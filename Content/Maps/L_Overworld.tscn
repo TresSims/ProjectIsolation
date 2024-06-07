@@ -1,0 +1,116 @@
+[gd_scene load_steps=5 format=3 uid="uid://c0ix7id7ixugo"]
+
+[ext_resource type="Texture2D" uid="uid://dpe46ncjopw0p" path="res://Content/UI/T_OverworldBg.png" id="1_brvhk"]
+[ext_resource type="Script" path="res://Content/Core/Overworld/GD_StarMap.gd" id="2_klgkk"]
+[ext_resource type="PackedScene" uid="uid://duclwubyc7yvl" path="res://Content/Core/Overworld/B_MapLocation.tscn" id="3_qmrfc"]
+[ext_resource type="Script" path="res://Content/Core/Overworld/GD_MazeBox.gd" id="4_jm72m"]
+
+[node name="L_Overworld" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_brvhk")
+expand_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="StarMap" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+script = ExtResource("2_klgkk")
+
+[node name="MapLines" type="Node2D" parent="MarginContainer/StarMap"]
+
+[node name="Line2D" type="Line2D" parent="MarginContainer/StarMap/MapLines"]
+points = PackedVector2Array(200, 500, 500, 300)
+
+[node name="Line2D5" type="Line2D" parent="MarginContainer/StarMap/MapLines"]
+points = PackedVector2Array(500, 300, 983, 101)
+
+[node name="MapLocations" type="Control" parent="MarginContainer/StarMap"]
+layout_mode = 2
+anchors_preset = 0
+offset_right = 1230.0
+offset_bottom = 670.0
+
+[node name="MapLocation" parent="MarginContainer/StarMap/MapLocations" instance=ExtResource("3_qmrfc")]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 500.0
+offset_right = 268.0
+offset_bottom = 531.0
+
+[node name="MapLocation2" parent="MarginContainer/StarMap/MapLocations" instance=ExtResource("3_qmrfc")]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 300.0
+offset_right = 568.0
+offset_bottom = 331.0
+
+[node name="MapLocation3" parent="MarginContainer/StarMap/MapLocations" instance=ExtResource("3_qmrfc")]
+layout_mode = 0
+offset_left = 952.0
+offset_top = 76.0
+offset_right = 1020.0
+offset_bottom = 107.0
+
+[node name="MazeBox" type="PanelContainer" parent="MarginContainer/StarMap"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -244.0
+offset_top = -230.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("4_jm72m")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/StarMap/MazeBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/StarMap/MazeBox/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="MarginContainer/StarMap/MazeBox/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Pick a world to explore!"
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/StarMap/MazeBox/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Help Starretri find friends to fight off the Isolation!"
+
+[node name="Button" type="Button" parent="MarginContainer/StarMap/MazeBox/MarginContainer/VBoxContainer"]
+layout_mode = 2
+disabled = true
+text = "Start"
+
+[connection signal="pressed" from="MarginContainer/StarMap/MazeBox/MarginContainer/VBoxContainer/Button" to="MarginContainer/StarMap/MazeBox" method="_on_press"]
