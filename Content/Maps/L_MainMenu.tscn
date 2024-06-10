@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bypxny1o3ylmj"]
+[gd_scene load_steps=10 format=3 uid="uid://bypxny1o3ylmj"]
 
 [ext_resource type="Environment" uid="uid://cu3l378x4crcl" path="res://Content/Art/Environments/Space.tres" id="1_7oloa"]
 [ext_resource type="Script" path="res://Content/Core/GD_NavButton.gd" id="2_e6bs1"]
 [ext_resource type="Texture2D" uid="uid://l6ro42ljn2oj" path="res://Content/UI/T_TitleCard.png" id="2_rh70n"]
 [ext_resource type="PackedScene" uid="uid://c0ix7id7ixugo" path="res://Content/Maps/L_Overworld.tscn" id="3_8w3p4"]
+[ext_resource type="PackedScene" uid="uid://brnucdqtge6o6" path="res://Content/Maps/L_CharacterSelect.tscn" id="3_rqojr"]
 [ext_resource type="Script" path="res://Content/Core/GD_QuitButton.gd" id="4_i7lq7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ywyl"]
@@ -55,7 +56,14 @@ alignment = 2
 
 [node name="Button" type="Button" parent="Camera3D/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Play"
+text = "New Game"
+script = ExtResource("2_e6bs1")
+NextScene = ExtResource("3_rqojr")
+
+[node name="Button3" type="Button" parent="Camera3D/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+disabled = true
+text = "Continue Save"
 script = ExtResource("2_e6bs1")
 NextScene = ExtResource("3_8w3p4")
 
@@ -92,4 +100,5 @@ mesh = SubResource("SphereMesh_xho5r")
 skeleton = NodePath("../MeshInstance3D")
 
 [connection signal="pressed" from="Camera3D/Control/MarginContainer/VBoxContainer/Button" to="Camera3D/Control/MarginContainer/VBoxContainer/Button" method="_load_scene"]
+[connection signal="pressed" from="Camera3D/Control/MarginContainer/VBoxContainer/Button3" to="Camera3D/Control/MarginContainer/VBoxContainer/Button3" method="_load_scene"]
 [connection signal="pressed" from="Camera3D/Control/MarginContainer/VBoxContainer/Button2" to="Camera3D/Control/MarginContainer/VBoxContainer/Button2" method="_quit_game"]
