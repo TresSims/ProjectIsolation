@@ -1,0 +1,102 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhsrq2mkr4f1h"]
+
+[ext_resource type="Script" path="res://Content/UI/GD_CharacterButton.gd" id="1_km0w0"]
+[ext_resource type="Texture2D" uid="uid://bq6hsaisyuatc" path="res://Content/Art/Characters/Starretri/T_StarretriPortrait.jpg" id="1_kulls"]
+[ext_resource type="Texture2D" uid="uid://2vuqloi34loi" path="res://Content/UI/T_Locked.png" id="2_enued"]
+
+[node name="Character Button" type="PanelContainer"]
+size_flags_horizontal = 0
+script = ExtResource("1_km0w0")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBox" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="MarginContainer/VBox"]
+layout_mode = 2
+text = "Starritri"
+
+[node name="Profile" type="TextureRect" parent="MarginContainer/VBox"]
+layout_mode = 2
+texture = ExtResource("1_kulls")
+expand_mode = 4
+
+[node name="Locked" type="TextureRect" parent="MarginContainer/VBox/Profile"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_enued")
+expand_mode = 4
+
+[node name="Int" type="Label" parent="MarginContainer/VBox"]
+layout_mode = 2
+text = "INT: 3"
+
+[node name="Str" type="Label" parent="MarginContainer/VBox"]
+layout_mode = 2
+text = "STR: 1"
+
+[node name="Dex" type="Label" parent="MarginContainer/VBox"]
+layout_mode = 2
+text = "DEX: 1"
+
+[node name="Level" type="Label" parent="MarginContainer/VBox"]
+layout_mode = 2
+text = "Level: 1"
+
+[node name="Abilities" type="Label" parent="MarginContainer/VBox"]
+layout_mode = 2
+text = "Abilities"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AbilityContainer" type="HBoxContainer" parent="MarginContainer/VBox"]
+layout_mode = 2
+
+[node name="Ability 1" type="VBoxContainer" parent="MarginContainer/VBox/AbilityContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBox/AbilityContainer/Ability 1"]
+layout_mode = 2
+texture = ExtResource("2_enued")
+expand_mode = 4
+
+[node name="Label" type="Label" parent="MarginContainer/VBox/AbilityContainer/Ability 1"]
+layout_mode = 2
+text = "Locked"
+
+[node name="Ability 2" type="VBoxContainer" parent="MarginContainer/VBox/AbilityContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBox/AbilityContainer/Ability 2"]
+layout_mode = 2
+texture = ExtResource("2_enued")
+expand_mode = 4
+
+[node name="Label" type="Label" parent="MarginContainer/VBox/AbilityContainer/Ability 2"]
+layout_mode = 2
+text = "Locked"
+
+[node name="Ability 3" type="VBoxContainer" parent="MarginContainer/VBox/AbilityContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBox/AbilityContainer/Ability 3"]
+layout_mode = 2
+texture = ExtResource("2_enued")
+expand_mode = 4
+
+[node name="Label" type="Label" parent="MarginContainer/VBox/AbilityContainer/Ability 3"]
+layout_mode = 2
+text = "Locked"
