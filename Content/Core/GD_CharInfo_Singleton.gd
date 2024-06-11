@@ -60,7 +60,7 @@ func get_save_dir():
 	return save_dir
 
 func get_save_file(character_name, access_mode):
-	var save_dir = get_save_dir()
+	get_save_dir()
 	
 	var character_file = CHAR_LIST_LOCATION + character_name + ".character"
 	
@@ -96,10 +96,10 @@ func read_char_file(file):
 	return json.get_data()
 
 func save_char(character):
-	var save_char = get_save_file(character["name"], FileAccess.WRITE)
+	var save_file = get_save_file(character["name"], FileAccess.WRITE)
 	var json_string = JSON.stringify(character)
 	
-	save_char.store_line(json_string)
+	save_file.store_line(json_string)
 
 func set_char(new_char):
 	current_char = new_char

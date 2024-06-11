@@ -23,7 +23,6 @@ func read_starmap():
 		locations.remove_child(n)
 		n.queue_free()
 	
-	var i = 0
 	for node in map["nodes"]:
 		var new_elem = map_elem.instantiate()
 		new_elem.meta = node
@@ -42,8 +41,3 @@ func read_starmap():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	read_starmap()
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
