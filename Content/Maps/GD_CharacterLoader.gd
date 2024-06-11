@@ -11,6 +11,7 @@ func _ready():
 		child.queue_free()
 	
 	var characters = CharacterInfo.get_chars()
+	print(characters)
 	for character in characters["characters"]:
 		var new_button = character_button.instantiate()
 		button_list.add_child(new_button)
@@ -19,8 +20,3 @@ func _ready():
 		# Initially select first character
 		if character["id"] == 0:
 			CharacterInfo.current_char = character
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass

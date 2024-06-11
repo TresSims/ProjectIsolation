@@ -7,12 +7,13 @@ const map_elem = preload("res://Content/Core/Overworld/B_MapLocation.tscn")
 @onready var meta = $MazeBox
 
 func read_starmap():
-	var map = Starmaps.current_starmap
-	
 	# If starmap is empty, create a new one
-	if map == {}:
+	if not Starmaps.save_exists():
 		Starmaps.gen_starmap()
-		map = Starmaps.current_starmap
+	else:
+		Starmaps.load_starmap()
+	
+	var map = Starmaps.current_starmap
 	
 	for n in lines.get_children():
 		lines.remove_child(n)

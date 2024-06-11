@@ -6,7 +6,7 @@ var strength : int
 
 var char_name : String
 
-var char_list_dit = "user://chars/"
+var CHAR_LIST_LOCATION = "user://chars/"
 
 var character_list_example = {
 	"characters": [
@@ -51,9 +51,55 @@ var character_list_example = {
 
 var current_char = character_list_example["characters"][0]
 
+func get_save_dir():
+	var save_dir = DirAccess.open("user://")
+	if not save_dir.dir_exists(CHAR_LIST_LOCATION):
+		save_dir.make_dir(CHAR_LIST_LOCATION)
+	
+	save_dir = DirAccess.open(CHAR_LIST_LOCATION)
+	return save_dir
+
+func get_save_file(character_name, access_mode):
+	var save_dir = get_save_dir()
+	
+	var character_file = CHAR_LIST_LOCATION + character_name + ".character"
+	
+	return FileAccess.open(character_file, access_mode)
 
 func get_chars():
-	return character_list_example
+	var save_dir = get_save_dir()
+	var saves = save_dir.get_files()
+	if saves.size() == 0:
+		for character in character_list_example["characters"]:
+			save_char(character)
+		
+		saves = save_dir.get_files()
+	
+	var characters = {"characters": []}
+	
+	for save in saves:
+		characters["characters"].append(read_char_file(save))
+	
+	return characters
+
+func read_char_file(file):
+	var load_char = get_save_file(file.get_slice(".",0), FileAccess.READ)
+	
+	var json = JSON.new()
+	
+	var json_string = load_char.get_line()
+	var parse_result = json.parse(json_string)
+	if not parse_result == OK:
+		print("Can't read character")
+		return
+
+	return json.get_data()
+
+func save_char(character):
+	var save_char = get_save_file(character["name"], FileAccess.WRITE)
+	var json_string = JSON.stringify(character)
+	
+	save_char.store_line(json_string)
 
 func set_char(new_char):
 	current_char = new_char

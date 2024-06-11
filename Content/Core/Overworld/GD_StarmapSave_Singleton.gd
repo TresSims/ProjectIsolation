@@ -16,6 +16,7 @@ var starmap_scene = preload("res://Content/Maps/L_Overworld.tscn")
 var you_win = preload("res://Content/Maps/L_YouWin.tscn")
 
 var starmap_example = {
+	"character": "Starretri",
 	"nodes": [
 		{
 			"id": 0,
@@ -76,6 +77,9 @@ func save_starmap():
 
 func load_starmap():
 	var load_game = get_save_file(FileAccess.READ)
+	if !load_game:
+		return 0
+
 	
 	var json = JSON.new()
 	var json_string = load_game.get_line()
@@ -83,13 +87,19 @@ func load_starmap():
 	
 	if not parse_result == OK:
 		print("Scene corrupt.")
-		return
+		return 0
 	
 	current_starmap = json.get_data()
+	return 1
+
+func save_exists():
+	return FileAccess.file_exists(STARMAP_SAVE_LOCATION + STARMAP_FILE_NAME)
 
 func gen_starmap():
 	current_starmap = starmap_example
 	current_node = 0
+	
+	save_starmap()
 
 func solve():
 	print_debug("Level Solved!")
@@ -104,8 +114,11 @@ func solve():
 		current_starmap["nodes"][id]["up_next"] = true
 	
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	save_starmap()
 	if completed_map["type"] == GOAL:
 		navigate_to_win()
+		CharacterInfo.save_char(CharacterInfo.current_char)
+		clear_map()
 	else:
 		navigate_to_starmap()
 
@@ -127,4 +140,7 @@ func navigate_generic(map):
 
 func quit():
 	get_tree().quit()
-	
+
+func clear_map():
+	var save_dir = DirAccess.open(STARMAP_SAVE_LOCATION)
+	save_dir.remove(STARMAP_FILE_NAME)
