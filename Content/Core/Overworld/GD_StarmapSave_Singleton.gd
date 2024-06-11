@@ -124,7 +124,7 @@ func gen_starmap():
 	}
 	
 	rng.seed = new_starmap["seed"]
-	new_starmap["state"] = rng.state
+	new_starmap["seed_state"] = rng.state
 	
 	var first_node = gen_node(START)
 	first_node["location_x"] = .1
@@ -220,7 +220,7 @@ func clear_map():
 func gen_node(type):
 	var new_node = {}
 	new_node["type"] = type
-	new_node["name"] = SYSTEM_NAMES[rng.randi_range(0, len(SYSTEM_NAMES))] + " " + str(rng.randi_range(1, 9))
+	new_node["name"] = SYSTEM_NAMES[rng.randi_range(0, len(SYSTEM_NAMES)-1)] + " " + str(rng.randi_range(1, 9))
 	new_node["completed"] = false
 	new_node["current"] = false
 	new_node["up_next"] = false
