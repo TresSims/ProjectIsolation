@@ -1,12 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://bypxny1o3ylmj"]
+[gd_scene load_steps=12 format=3 uid="uid://bypxny1o3ylmj"]
 
 [ext_resource type="Environment" uid="uid://cu3l378x4crcl" path="res://Content/Art/Environments/Space.tres" id="1_7oloa"]
 [ext_resource type="Script" path="res://Content/Maps/GD_MainMenu.gd" id="2_2dg7j"]
-[ext_resource type="Script" path="res://Content/Core/GD_NavButton.gd" id="2_e6bs1"]
 [ext_resource type="Texture2D" uid="uid://l6ro42ljn2oj" path="res://Content/UI/T_TitleCard.png" id="2_rh70n"]
 [ext_resource type="PackedScene" uid="uid://brnucdqtge6o6" path="res://Content/Maps/L_CharacterSelect.tscn" id="3_rqojr"]
 [ext_resource type="Script" path="res://Content/Maps/GD_NewGame.gd" id="3_slfjr"]
 [ext_resource type="Script" path="res://Content/Core/GD_QuitButton.gd" id="4_i7lq7"]
+[ext_resource type="Script" path="res://Content/Maps/GD_Continue.gd" id="5_8qc73"]
+[ext_resource type="PackedScene" uid="uid://c0ix7id7ixugo" path="res://Content/Maps/L_Overworld.tscn" id="6_a1a87"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ywyl"]
 albedo_color = Color(0.136826, 0.136826, 0.136826, 1)
@@ -66,8 +67,8 @@ NextScene = ExtResource("3_rqojr")
 layout_mode = 2
 disabled = true
 text = "Continue Save"
-script = ExtResource("2_e6bs1")
-NextScene = ExtResource("3_rqojr")
+script = ExtResource("5_8qc73")
+NextScene = ExtResource("6_a1a87")
 
 [node name="Quit" type="Button" parent="Camera3D/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
