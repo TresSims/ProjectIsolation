@@ -133,23 +133,24 @@ func gen_starmap():
 	first_node["id"] = generated_nodes
 	generated_nodes += 1
 	
-	var noise_scale = .1
+	var noise_scale = 0.05
 	
 	var zone_count = rng.randi_range(2, 3)
-	var system_count = rng.randi_range(zone_count, zone_count * 3)
+	var system_count = rng.randi_range(zone_count*2, zone_count * 2 + zone_count)
+	print_debug(system_count)
 	var system_vector = [[first_node]]
-	for z in range(1, zone_count):
-		var zone_system_count = rng.randi_range(1, system_count/zone_count)
+	for z in range(0, zone_count):
+		var zone_system_count = rng.randi_range(2, ceil(float(system_count)/float(zone_count)))
 		system_count = system_count - zone_system_count
-		if z == zone_count && system_count > 0:
+		if z == zone_count - 1 && system_count > 0:
 			zone_system_count += system_count
-		var x_loc = (0.7 / zone_count) * (z - 1) + .15
+		var x_loc = (0.8 / (zone_count+1)) * (z+1) + .1
 		var zone_systems = []
-		for s in range(1, zone_system_count):
+		for s in range(0, zone_system_count):
 			var system_type = rng.randi_range(MAZE, STORE)
 			var new_node = gen_node(system_type)
 			new_node["location_x"] = x_loc + rng.randf_range(-noise_scale, noise_scale)
-			new_node["location_y"] = .8 / zone_system_count + rng.randf_range(-noise_scale, noise_scale)
+			new_node["location_y"] = .2 + (.8 / (zone_system_count + 1)) * (s+1) + rng.randf_range(-noise_scale, noise_scale)
 			new_node["id"] = generated_nodes
 			generated_nodes += 1
 			zone_systems.append(new_node)
@@ -157,19 +158,20 @@ func gen_starmap():
 	
 	var final_node = gen_node(GOAL)
 	final_node["location_x"] = .9
-	final_node["lozation_y"] = .5
+	final_node["location_y"] = .5
+	final_node["id"] = generated_nodes
 	system_vector.append([final_node])
 	
 	for zone in range(0, len(system_vector)):
-		if zone == zone_count:
-			system_vector[zone][0]["children"] = []
+		if zone == len(system_vector)-1:
+			system_vector[zone][0]["neighbors"] = []
 			new_starmap["nodes"].append(system_vector[zone][0])
 		else:
 			for system in range(0, len(system_vector[zone])):
 				system_vector[zone][system]["neighbors"] = []
-				for o_system in system_vector[zone + 1]:
-					system_vector[zone][system]["children"].append(system_vector[zone+1][o_system]["id"])
-					new_starmap["nodes"].append(system_vector[zone][system])
+				for o_system in range(0, len(system_vector[zone + 1])):
+					system_vector[zone][system]["neighbors"].append(system_vector[zone+1][o_system]["id"])
+				new_starmap["nodes"].append(system_vector[zone][system])
 
 	new_starmap["seed_state"] = rng.state
 	current_starmap = new_starmap
@@ -244,7 +246,6 @@ func gen_node(type):
 func get_maze_scene():
 	var maze_dir = DirAccess.open(MAZE_SCENES_DIR)
 	var mazes = maze_dir.get_files()
-	print_debug(mazes)
 	return MAZE_SCENES_DIR+mazes[rng.randi_range(0, len(mazes)-1)]
 
 func get_store_scene():
