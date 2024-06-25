@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://bbcic6tl0sv8q"]
 
-[ext_resource type="Environment" uid="uid://cu3l378x4crcl" path="res://Content/Art/Environments/Space.tres" id="1_xpt7f"]
-[ext_resource type="PackedScene" uid="uid://coywj5kl2qfg3" path="res://Content/Core/Characters/B_Stary.tscn" id="2_swye7"]
-[ext_resource type="PackedScene" uid="uid://bhxowuwtd4fvm" path="res://Content/Core/Overworld/B_SolveLevel.tscn" id="3_lch8u"]
-[ext_resource type="Material" uid="uid://b64ttdintm615" path="res://Content/Art/M_Glow.tres" id="4_xignr"]
+[ext_resource type="Environment" uid="uid://cu3l378x4crcl" path="res://Content/Art/Environments/E_Space.tres" id="1_xpt7f"]
+[ext_resource type="PackedScene" uid="uid://coywj5kl2qfg3" path="res://Content/Core/Characters/Starretri/B_Stary.tscn" id="2_swye7"]
+[ext_resource type="PackedScene" uid="uid://bhxowuwtd4fvm" path="res://Content/Core/EnvironmentComponents/Portal/B_GoalPortal.tscn" id="3_lch8u"]
+[ext_resource type="Material" uid="uid://b64ttdintm615" path="res://Content/Art/MaterialLibrary/M_Glow.tres" id="4_xignr"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_r5fod"]
 

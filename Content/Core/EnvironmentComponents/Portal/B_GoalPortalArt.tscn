@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxfqwdngk73px"]
+
+[ext_resource type="PackedScene" uid="uid://cu073ojpvk3ol" path="res://Content/Art/Environments/GoalPortal/SM_GoalPortal.glb" id="1_kk8aw"]
+[ext_resource type="Script" path="res://Content/Core/EnvironmentComponents/GD_ProceduralComponent.gd" id="2_hbp73"]
+
+[node name="SM_GoalPortal" node_paths=PackedStringArray("colorizable_objects") instance=ExtResource("1_kk8aw")]
+script = ExtResource("2_hbp73")
+color = Color(0.172549, 0.34902, 0.67451, 1)
+colorizable_objects = [NodePath("Portal")]

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bhsrq2mkr4f1h" path="res://Content/UI/B_CharacterButton.tscn" id="1_7413k"]
 [ext_resource type="Script" path="res://Content/Maps/GD_CharacterLoader.gd" id="1_j4fvw"]
-[ext_resource type="Script" path="res://Content/Core/GD_NavButton.gd" id="3_abgfg"]
+[ext_resource type="Script" path="res://Content/UI/Scripts/GD_NavButton.gd" id="3_abgfg"]
 [ext_resource type="PackedScene" uid="uid://c0ix7id7ixugo" path="res://Content/Maps/L_Overworld.tscn" id="4_2eodd"]
 
 [node name="LCharacterSelect" type="Control"]

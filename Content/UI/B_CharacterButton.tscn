@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bhsrq2mkr4f1h"]
 
-[ext_resource type="Script" path="res://Content/UI/GD_CharacterButton.gd" id="1_km0w0"]
+[ext_resource type="Script" path="res://Content/UI/Scripts/GD_CharacterButton.gd" id="1_km0w0"]
 [ext_resource type="Texture2D" uid="uid://bq6hsaisyuatc" path="res://Content/Art/Characters/Starretri/T_StarretriPortrait.jpg" id="1_kulls"]
 [ext_resource type="Texture2D" uid="uid://2vuqloi34loi" path="res://Content/UI/T_Locked.png" id="2_enued"]
 

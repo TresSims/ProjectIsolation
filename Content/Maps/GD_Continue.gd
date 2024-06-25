@@ -1,4 +1,4 @@
-extends "res://Content/Core/GD_NavButton.gd"
+extends NavButton
 
 
 func _load_scene():
