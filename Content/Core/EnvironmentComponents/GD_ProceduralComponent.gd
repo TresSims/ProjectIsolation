@@ -16,6 +16,7 @@ func _ready():
 func setup_part():
 	var material = colorizable_objects[0].mesh.surface_get_material(0).duplicate()
 	material.albedo_color = color
+	material.emission = color
 	for object in colorizable_objects:
 		object.mesh.surface_set_material(0, material)
 	

@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://ocjchu0lxdcc"]
+
+[ext_resource type="Environment" uid="uid://cu3l378x4crcl" path="res://Content/Art/Environments/E_Space.tres" id="1_mo72u"]
+[ext_resource type="PackedScene" uid="uid://coywj5kl2qfg3" path="res://Content/Core/Characters/Starretri/B_Stary.tscn" id="2_wss3u"]
+[ext_resource type="PackedScene" uid="uid://bhsasscut5vvh" path="res://Content/Core/EnvironmentComponents/Wall/B_Wall.tscn" id="5_6127p"]
+[ext_resource type="Script" path="res://Content/Core/Mazes/GD_MazeGen.gd" id="6_8fofj"]
+
+[node name="WorldEnvironment" type="WorldEnvironment"]
+environment = ExtResource("1_mo72u")
+
+[node name="Player" parent="." instance=ExtResource("2_wss3u")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.86539, 1.54677, 0)
+
+[node name="MazeGenerator" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.15217)
+script = ExtResource("6_8fofj")
+wall = ExtResource("5_6127p")

@@ -1,4 +1,4 @@
-extends Button
+extends TextureButton
 
 var meta = {
 	"id": 0,
@@ -22,8 +22,27 @@ func setup(locations, maze_box):
 		self.disabled = false
 	else:
 		self.disabled = true
+		self.modulate = Color(.5, .5, .5, .5)
+	
+	self.texture_normal = load(meta["button_texture"])
+	#print_debug(self.material.get_shader_parameter("gradient"))
+	print_debug(load(meta["planet_theme"]))
+	#self.material.set_shader_parameter("gradient", load(meta["planet_theme"]))
 	
 	box = maze_box
 
 func _write_meta():
 	box.update(meta)
+	on_click()
+
+func _on_hover():
+	if !self.disabled:
+		self.modulate = Color(.95, .95, .95)
+
+func on_click():
+	if !self.disabled:
+		self.modulate = Color(1, 1, 1)
+
+func _goto_default():
+	if !self.disabled:
+		self.modulate = Color(.9, .9, .9)

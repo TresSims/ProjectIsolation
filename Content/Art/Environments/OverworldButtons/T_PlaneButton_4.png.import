@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpe46ncjopw0p"
-path="res://.godot/imported/T_OverworldBg.png-44924aae537aff82d4bfc30284f43903.ctex"
+uid="uid://5khhegpc6xmw"
+path="res://.godot/imported/T_PlaneButton_4.png-9b78f5cbf2b4a71acbd1b28bc329ce96.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Content/UI/T_OverworldBg.png"
-dest_files=["res://.godot/imported/T_OverworldBg.png-44924aae537aff82d4bfc30284f43903.ctex"]
+source_file="res://Content/Art/Environments/OverworldButtons/T_PlaneButton_4.png"
+dest_files=["res://.godot/imported/T_PlaneButton_4.png-9b78f5cbf2b4a71acbd1b28bc329ce96.ctex"]
 
 [params]
 

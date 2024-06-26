@@ -73,8 +73,10 @@ const SYSTEM_NAMES = [
 	"Castor"
 ]
 
-const MAZE_SCENES_DIR = "res://Content/Maps/mazes/"
-const STORE_SCENES_DIR = "res://Content/Maps/stores/"
+const MAZE_SCENES_DIR = "res://Content/Maps/Mazes/"
+const STORE_SCENES_DIR = "res://Content/Maps/Stores/"
+const PLANET_BUTTONS_DIR = "res://Content/Art/Environments/OverworldButtons/"
+const PLANET_THEMES_DIR = "res://Content/Art/Environments/EnvironmentThemes/"
 
 # Only keep one active starmap
 func get_save_file(access_mode):
@@ -105,6 +107,9 @@ func load_starmap():
 		return 0
 	
 	current_starmap = json.get_data()
+	rng = RandomNumberGenerator.new()
+	rng.seed = current_starmap["seed"]
+	rng.state = current_starmap["seed_state"]
 	return 1
 
 func save_exists():
@@ -137,7 +142,6 @@ func gen_starmap():
 	
 	var zone_count = rng.randi_range(2, 3)
 	var system_count = rng.randi_range(zone_count*2, zone_count * 2 + zone_count)
-	print_debug(system_count)
 	var system_vector = [[first_node]]
 	for z in range(0, zone_count):
 		var zone_system_count = rng.randi_range(2, ceil(float(system_count)/float(zone_count)))
@@ -226,7 +230,9 @@ func gen_node(type):
 	new_node["completed"] = false
 	new_node["current"] = false
 	new_node["up_next"] = false
-	new_node["scene"] = get_maze_scene()
+	new_node["scene"] = get_resource_from_directory(MAZE_SCENES_DIR)
+	new_node["button_texture"] = get_resource_from_directory(PLANET_BUTTONS_DIR)
+	new_node["planet_theme"] = get_resource_from_directory(PLANET_THEMES_DIR)
 	
 	match type:
 		START:
@@ -236,19 +242,16 @@ func gen_node(type):
 			new_node["desc"] = "A challenging maze! Earn rewards and experience"
 		STORE:
 			new_node["desc"] = "There's a store in this system! Buy supplies!"
-			new_node["scene"] = get_store_scene()
+			new_node["scene"] = get_resource_from_directory(STORE_SCENES_DIR)
 		GOAL:
 			new_node["desc"] = "You're almost there! You can do it!"
 			
 	
 	return new_node
 
-func get_maze_scene():
-	var maze_dir = DirAccess.open(MAZE_SCENES_DIR)
-	var mazes = maze_dir.get_files()
-	return MAZE_SCENES_DIR+mazes[rng.randi_range(0, len(mazes)-1)]
 
-func get_store_scene():
-	var store_dir = DirAccess.open(STORE_SCENES_DIR)
-	var stores = store_dir.get_files()
-	return STORE_SCENES_DIR+stores[rng.randi_range(0, len(stores)-1)]
+func get_resource_from_directory(directory, filter=""):
+	var resource_dir = DirAccess.open(directory)
+	var resources = resource_dir.get_files()
+	resources = Array(resources).filter(func(filename): return !filename.contains(".import"))
+	return directory+resources[rng.randi_range(0, len(resources)-1)]

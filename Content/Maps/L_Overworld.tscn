@@ -1,9 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://c0ix7id7ixugo"]
+[gd_scene load_steps=10 format=3 uid="uid://c0ix7id7ixugo"]
 
-[ext_resource type="Texture2D" uid="uid://dpe46ncjopw0p" path="res://Content/UI/T_OverworldBg.png" id="1_brvhk"]
 [ext_resource type="Script" path="res://Content/Core/Overworld/GD_StarMap.gd" id="2_klgkk"]
-[ext_resource type="PackedScene" uid="uid://duclwubyc7yvl" path="res://Content/Core/Overworld/B_MapLocation.tscn" id="3_qmrfc"]
-[ext_resource type="Script" path="res://Content/Core/Overworld/GD_MazeBox.gd" id="4_jm72m"]
+[ext_resource type="Shader" path="res://Content/UI/Overworld/M_PlanetButton.gdshader" id="3_f011y"]
+[ext_resource type="PackedScene" uid="uid://duclwubyc7yvl" path="res://Content/UI/Overworld/B_MapLocation.tscn" id="3_qmrfc"]
+[ext_resource type="Gradient" uid="uid://bsh5jlaubyf8f" path="res://Content/Art/Environments/EnvironmentThemes/G_EnvironmentTheme_1.tres" id="4_8ylpr"]
+[ext_resource type="Script" path="res://Content/UI/Overworld/GD_MazeBox.gd" id="4_jm72m"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3168x"]
+gradient = ExtResource("4_8ylpr")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_32sc8"]
+resource_local_to_scene = true
+shader = ExtResource("3_f011y")
+shader_parameter/gradient = SubResource("GradientTexture1D_3168x")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hrwj2"]
+resource_local_to_scene = true
+shader = ExtResource("3_f011y")
+shader_parameter/gradient = SubResource("GradientTexture1D_3168x")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rxqwr"]
+resource_local_to_scene = true
+shader = ExtResource("3_f011y")
+shader_parameter/gradient = SubResource("GradientTexture1D_3168x")
 
 [node name="L_Overworld" type="Control"]
 layout_mode = 3
@@ -20,7 +39,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_brvhk")
 expand_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -54,6 +72,7 @@ offset_right = 1230.0
 offset_bottom = 670.0
 
 [node name="MapLocation" parent="MarginContainer/StarMap/MapLocations" instance=ExtResource("3_qmrfc")]
+material = SubResource("ShaderMaterial_32sc8")
 layout_mode = 0
 offset_left = 200.0
 offset_top = 500.0
@@ -61,6 +80,7 @@ offset_right = 268.0
 offset_bottom = 531.0
 
 [node name="MapLocation2" parent="MarginContainer/StarMap/MapLocations" instance=ExtResource("3_qmrfc")]
+material = SubResource("ShaderMaterial_hrwj2")
 layout_mode = 0
 offset_left = 500.0
 offset_top = 300.0
@@ -68,6 +88,7 @@ offset_right = 568.0
 offset_bottom = 331.0
 
 [node name="MapLocation3" parent="MarginContainer/StarMap/MapLocations" instance=ExtResource("3_qmrfc")]
+material = SubResource("ShaderMaterial_rxqwr")
 layout_mode = 0
 offset_left = 952.0
 offset_top = 76.0

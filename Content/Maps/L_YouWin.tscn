@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://bprqoy5ec2u6"]
 
 [ext_resource type="Environment" uid="uid://cu3l378x4crcl" path="res://Content/Art/Environments/E_Space.tres" id="1_31kip"]
-[ext_resource type="Texture2D" uid="uid://l6ro42ljn2oj" path="res://Content/UI/T_TitleCard.png" id="2_3xxdw"]
+[ext_resource type="Texture2D" uid="uid://l6ro42ljn2oj" path="res://Content/UI/Scripts/T_TitleCard.png" id="2_3xxdw"]
 [ext_resource type="Script" path="res://Content/UI/Scripts/GD_NavButton.gd" id="2_ogjko"]
 [ext_resource type="PackedScene" uid="uid://bypxny1o3ylmj" path="res://Content/Maps/L_MainMenu.tscn" id="3_gluyb"]
 [ext_resource type="Script" path="res://Content/UI/Scripts/GD_QuitButton.gd" id="4_wmdxq"]

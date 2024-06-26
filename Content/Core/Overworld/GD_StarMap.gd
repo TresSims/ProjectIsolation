@@ -1,6 +1,7 @@
 extends Panel
 
-const map_elem = preload("res://Content/Core/Overworld/B_MapLocation.tscn")
+const map_elem = preload("res://Content/UI/Overworld/B_MapLocation.tscn")
+const line_elem = preload("res://Content/UI/Overworld/B_OverworldLine.tscn")
 
 @onready var lines = $MapLines
 @onready var locations = $MapLocations
@@ -32,10 +33,11 @@ func read_starmap():
 		
 		for n in node["neighbors"]:
 			var neighbor = map["nodes"][n]
-			var new_line = Line2D.new()
-		
-			new_line.add_point(Vector2(locations.size.x * node["location_x"] + new_elem.size.x/2, locations.size.y - (locations.size.y * node["location_y"]) + new_elem.size.y/2))
-			new_line.add_point(Vector2(locations.size.x * neighbor["location_x"] + new_elem.size.x/2, locations.size.y - (locations.size.y * neighbor["location_y"]) + new_elem.size.y/2))
+			var new_line = line_elem.instantiate()
+			
+			var ui_elem_size = new_elem.size * new_elem.scale
+			new_line.points[0] = Vector2(locations.size.x * node["location_x"] + ui_elem_size.x/2, locations.size.y - (locations.size.y * node["location_y"]) + ui_elem_size.y/2)
+			new_line.points[1] = Vector2(locations.size.x * neighbor["location_x"] + ui_elem_size.x/2, locations.size.y - (locations.size.y * neighbor["location_y"]) + ui_elem_size.y/2)
 			lines.add_child(new_line)
 
 # Called when the node enters the scene tree for the first time.

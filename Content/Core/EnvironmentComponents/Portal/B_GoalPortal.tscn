@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bhxowuwtd4fvm"]
 
-[ext_resource type="Script" path="res://Content/Core/Overworld/GD_SolveLevel.gd" id="1_41ljf"]
+[ext_resource type="Script" path="res://Content/Core/GD_SolveLevel.gd" id="1_41ljf"]
 [ext_resource type="PackedScene" uid="uid://bxfqwdngk73px" path="res://Content/Core/EnvironmentComponents/Portal/B_GoalPortalArt.tscn" id="2_3du70"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_1nnsp"]
