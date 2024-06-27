@@ -17,7 +17,7 @@ var character_list_example = {
 			"str": 1,
 			"dex": 1,
 			"hp": 3,
-			"abilities": [],
+			"ability": "res://Content/Core/AddOns/Hint/B_Hint.tscn",
 			"exp": 0,
 			"level": 1,
 			"locked": false,
@@ -29,19 +29,19 @@ var character_list_example = {
 			"str": 3,
 			"dex": 1,
 			"hp": 3,
-			"abilities": [],
+			"ability": "res://Content/Core/AddOns/WallBreak/B_WallBreak.tscn",
 			"exp": 0,
 			"level": 1,
 			"locked": true,
 		},
 		{
 			"id": 2,
-			"name": "Starrletty",
+			"name": "Starla",
 			"int": 1,
 			"str": 1,
 			"dex": 3,
 			"hp": 3,
-			"abilities": [],
+			"ability": "res://Content/Core/AddOns/Dash/B_Dash.tscn",
 			"exp": 0,
 			"level": 1,
 			"locked": true,
@@ -49,7 +49,7 @@ var character_list_example = {
 	]
 }
 
-var current_char = character_list_example["characters"][0]
+var current_char
 
 func get_save_dir():
 	var save_dir = DirAccess.open("user://")
@@ -103,3 +103,5 @@ func save_char(character):
 
 func set_char(new_char):
 	current_char = new_char
+	Starmaps.current_starmap["character"] = new_char["name"]
+	Starmaps.save_starmap()

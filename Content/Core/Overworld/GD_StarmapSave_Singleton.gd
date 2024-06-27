@@ -88,6 +88,8 @@ func get_save_file(access_mode):
 
 func save_starmap():
 	var save_game = get_save_file(FileAccess.WRITE)
+	current_starmap["seed"] = rng.seed
+	current_starmap["seed_state"] = rng.state
 	var json_string = JSON.stringify(current_starmap)
 	
 	save_game.store_line(json_string)
@@ -110,6 +112,7 @@ func load_starmap():
 	rng = RandomNumberGenerator.new()
 	rng.seed = current_starmap["seed"]
 	rng.state = current_starmap["seed_state"]
+	CharacterInfo.set_char(CharacterInfo.read_char_file(current_starmap["character"]))
 	return 1
 
 func save_exists():
@@ -122,7 +125,6 @@ func gen_starmap():
 	
 	# Setup Empty Array for map
 	var new_starmap = {
-		"character": "Starretri",
 		"seed": rng.randi(),
 		"seed_state": -1,
 		"nodes": []
@@ -203,6 +205,7 @@ func solve():
 
 func navigate_to_maze(maze, new_id):
 	var next_scene = load(maze)
+	rng.state *= new_id + 2
 	get_tree().change_scene_to_packed(next_scene)
 	current_node = new_id
 
@@ -211,7 +214,15 @@ func navigate_to_starmap():
 
 func navigate_to_win():
 	current_starmap = {}
+	unlock_next()
 	get_tree().change_scene_to_packed(you_win)
+
+func unlock_next():
+	for c in CharacterInfo.get_chars()["characters"]:
+		if c["locked"] == true:
+			c["locked"] = false
+			CharacterInfo.save_char(c)
+			return
 
 func navigate_generic(map):
 	get_tree().change_scene_to_packed(map)

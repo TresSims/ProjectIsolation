@@ -34,4 +34,5 @@ func setup(character_info):
 	select_button.disabled = locked
 
 func _select():
-	CharacterInfo.current_char = char_info
+	CharacterInfo.set_char( char_info )
+	print_debug(char_info)

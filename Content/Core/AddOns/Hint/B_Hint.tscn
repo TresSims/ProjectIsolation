@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://derbt1o7xjf4y"]
+
+[ext_resource type="Script" path="res://Content/Core/AddOns/Hint/GD_Hint.gd" id="1_68sja"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sg8hb"]
+transparency = 1
+albedo_color = Color(0, 0.788235, 0.788235, 0.839216)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_h8pnn"]
+material = SubResource("StandardMaterial3D_sg8hb")
+top_radius = 0.1
+bottom_radius = 0.0
+radial_segments = 10
+rings = 2
+cap_bottom = false
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_68sja")
+cooldown_time = 10.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-5.73206e-15, -1.31134e-07, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, 1.31134e-07, -0.011163, -2.38419e-07, -1.56739)
+mesh = SubResource("CylinderMesh_h8pnn")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="expire"]

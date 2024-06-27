@@ -1,67 +1,63 @@
-[gd_scene load_steps=7 format=3 uid="uid://bbcic6tl0sv8q"]
+[gd_scene load_steps=6 format=3 uid="uid://bbcic6tl0sv8q"]
 
 [ext_resource type="Environment" uid="uid://cu3l378x4crcl" path="res://Content/Art/Environments/E_Space.tres" id="1_xpt7f"]
 [ext_resource type="PackedScene" uid="uid://coywj5kl2qfg3" path="res://Content/Core/Characters/Starretri/B_Stary.tscn" id="2_swye7"]
 [ext_resource type="PackedScene" uid="uid://bhxowuwtd4fvm" path="res://Content/Core/EnvironmentComponents/Portal/B_GoalPortal.tscn" id="3_lch8u"]
-[ext_resource type="Material" uid="uid://b64ttdintm615" path="res://Content/Art/MaterialLibrary/M_Glow.tres" id="4_xignr"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_r5fod"]
-
-[sub_resource type="TorusMesh" id="TorusMesh_8d0a4"]
+[ext_resource type="PackedScene" uid="uid://debfgvbiwdu7n" path="res://Content/Core/EnvironmentComponents/Wall/B_Wall_Border.tscn" id="4_le3rg"]
+[ext_resource type="PackedScene" uid="uid://cr7vch2x1y0ch" path="res://Content/Core/EnvironmentComponents/Pillar/B_Pillar.tscn" id="5_fs85g"]
 
 [node name="WorldEnvironment" type="WorldEnvironment"]
 environment = ExtResource("1_xpt7f")
 
-[node name="Stary" parent="." instance=ExtResource("2_swye7")]
+[node name="Player" parent="." instance=ExtResource("2_swye7")]
 
 [node name="Solve" parent="." instance=ExtResource("3_lch8u")]
+transform = Transform3D(-0.0407457, -0.998399, -0.0392424, -0.999168, 0.0407771, 0, 0.00160019, 0.0392097, -0.99923, -9.56038, 0, 0)
 
 [node name="Debris" type="Node3D" parent="."]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Debris"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.20838, 0.336332, -3.68041)
-material_override = ExtResource("4_xignr")
-mesh = SubResource("BoxMesh_r5fod")
-skeleton = NodePath("../..")
+[node name="SM_Wall" parent="." instance=ExtResource("4_le3rg")]
+transform = Transform3D(0.356703, 0, 0.181005, 0, 0.4, 0, -0.181005, 0, 0.356703, -2.49394, 9.53674e-07, -13.5876)
+color = Color(0.972549, 0, 0, 1)
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Debris"]
-transform = Transform3D(0.872547, 0, -0.48853, 0.235508, 0.87613, 0.420633, 0.428016, -0.482075, 0.764465, 4.52972, -1.704, 3.05436)
-material_override = ExtResource("4_xignr")
-mesh = SubResource("BoxMesh_r5fod")
-skeleton = NodePath("../..")
+[node name="SM_Wall4" parent="." node_paths=PackedStringArray("colorizable_objects") instance=ExtResource("4_le3rg")]
+transform = Transform3D(0.399541, 0.0131604, -0.0139165, -0.0141513, 0.00697091, -0.399689, -0.0129076, 0.399723, 0.00742852, -2.40634, -2.8841, -11.8662)
+color = Color(0.972549, 0, 0, 1)
+colorizable_objects = [NodePath("../SM_Wall/Wall")]
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="Debris"]
-transform = Transform3D(0.872547, 0, -0.48853, 0.235508, 0.87613, 0.420633, 0.428016, -0.482075, 0.764465, -2.00196, -1.37094, -2.97429)
-material_override = ExtResource("4_xignr")
-mesh = SubResource("BoxMesh_r5fod")
-skeleton = NodePath("../..")
+[node name="SM_Wall5" parent="." node_paths=PackedStringArray("colorizable_objects") instance=ExtResource("4_le3rg")]
+transform = Transform3D(0.399541, 0.0131604, -0.0139165, -0.0141513, 0.00697091, -0.399689, -0.0129076, 0.399723, 0.00742852, 5.27603, -2.8841, -11.8662)
+color = Color(0, 1, 0, 1)
+colorizable_objects = [NodePath("../SM_Wall/Wall")]
 
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="Debris"]
-transform = Transform3D(-0.534552, -0.535264, -0.654023, -0.264361, 0.840935, -0.472167, 0.802725, -0.0794992, -0.591026, 1.37914, 4.41048, 6.67349)
-material_override = ExtResource("4_xignr")
-mesh = SubResource("BoxMesh_r5fod")
-skeleton = NodePath("../..")
+[node name="SM_Wall6" parent="." node_paths=PackedStringArray("colorizable_objects") instance=ExtResource("4_le3rg")]
+transform = Transform3D(0.399541, 0.0131604, -0.0139165, -0.0141513, 0.00697091, -0.399689, -0.0129076, 0.399723, 0.00742852, 12.076, -2.8841, -11.8662)
+color = Color(0, 0, 1, 1)
+colorizable_objects = [NodePath("../SM_Wall/Wall")]
 
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="Debris"]
-transform = Transform3D(-0.534552, -0.535264, -0.654023, -0.264361, 0.840935, -0.472167, 0.802725, -0.0794992, -0.591026, 3.62128, 7.01032, 3.58308)
-material_override = ExtResource("4_xignr")
-mesh = SubResource("TorusMesh_8d0a4")
-skeleton = NodePath("../..")
+[node name="SM_Wall2" parent="." node_paths=PackedStringArray("colorizable_objects") instance=ExtResource("4_le3rg")]
+transform = Transform3D(0.398713, 0, -0.0320587, 0, 0.4, 0, 0.0320587, 0, 0.398713, 4.84082, 9.53674e-07, -14.9641)
+color = Color(0.147671, 0.996627, 7.70092e-07, 1)
+colorizable_objects = [NodePath("../SM_Wall/Wall")]
 
-[node name="MeshInstance3D7" type="MeshInstance3D" parent="Debris"]
-transform = Transform3D(0.213533, -0.887045, 0.409335, -0.556809, -0.454787, -0.695077, 0.802725, -0.0794991, -0.591026, -7.28966, 0, -7.19467)
-material_override = ExtResource("4_xignr")
-mesh = SubResource("TorusMesh_8d0a4")
-skeleton = NodePath("../..")
+[node name="SM_Wall3" parent="." node_paths=PackedStringArray("colorizable_objects") instance=ExtResource("4_le3rg")]
+transform = Transform3D(0.362396, 0, -0.169319, 0, 0.4, 0, 0.169319, 0, 0.362396, 12.0683, -0.107721, -13.9134)
+color = Color(0.000206192, 0.260088, 0.804614, 1)
+colorizable_objects = [NodePath("../SM_Wall/Wall")]
 
-[node name="MeshInstance3D8" type="MeshInstance3D" parent="Debris"]
-transform = Transform3D(0.443319, -0.870359, 0.214342, -0.556809, -0.454787, -0.695077, 0.702447, 0.188794, -0.68624, -7.28966, 5.45226, 11.7556)
-material_override = ExtResource("4_xignr")
-mesh = SubResource("TorusMesh_8d0a4")
-skeleton = NodePath("../..")
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.991709, 0.093609, -0.0880339, 0, 0.685081, 0.728467, 0.128501, -0.722427, 0.679402, -9.09804, -5.55627, 7.01827)
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Debris"]
-transform = Transform3D(-0.623778, 0.70499, 0.337478, -0.780599, -0.583785, -0.223295, 0.0395936, -0.402721, 0.914466, -6.27951, 1.32922, 2.68553)
-material_override = ExtResource("4_xignr")
-mesh = SubResource("BoxMesh_r5fod")
-skeleton = NodePath("../..")
+[node name="SM_Pillar" parent="." instance=ExtResource("5_fs85g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -2, -11)
+color = Color(1, 0, 0, 1)
+
+[node name="SM_Pillar2" parent="." node_paths=PackedStringArray("colorizable_objects") instance=ExtResource("5_fs85g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.24931, -2, -11)
+color = Color(0, 0, 1, 1)
+colorizable_objects = [NodePath("../SM_Pillar/ColumnTop"), NodePath("../SM_Pillar/ColumnMid"), NodePath("../SM_Pillar/ColumnBottom")]
+
+[node name="SM_Pillar3" parent="." node_paths=PackedStringArray("colorizable_objects") instance=ExtResource("5_fs85g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1875, -2, -11)
+color = Color(0, 1, 0, 1)
+colorizable_objects = [NodePath("../SM_Pillar/ColumnTop"), NodePath("../SM_Pillar/ColumnMid"), NodePath("../SM_Pillar/ColumnBottom")]

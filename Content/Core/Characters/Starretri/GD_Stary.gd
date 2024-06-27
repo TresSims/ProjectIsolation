@@ -1,11 +1,26 @@
 extends CharacterBody3D
 
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+var SPEED = 10.0
 
 var sensitivity = 0.3
 var look_rot = Vector2(0, 0)
+
+var working = false
+var cooldown_time = 1.5
+@onready var cooldown_timer = $CooldownTimer
+var work_curve:Curve3D
+
+@onready var work_timer = $WorkTimer
+@onready var char_body = $MeshInstance3D
+@export var attack_curve:Curve3D
+@export var hit_scene:PackedScene
+var attack_time = .3
+var attack_cooldown = 1.5
+var attack_mag = 1
+
+@onready var cooldown_label = $Control/HBoxContainer/Count
+@onready var cooldown_bar = $Control/HBoxContainer/Progress 
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -14,6 +29,13 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		look_rot.y -= (event.relative.x * sensitivity)
 		look_rot.x -= (event.relative.y * sensitivity)
+	
+	if not working and cooldown_timer.time_left == 0:
+		if event.is_action_pressed("attack"):
+			attack()
+		
+		if event.is_action_pressed("ability"):
+			use_ability()
 
 func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
@@ -23,7 +45,7 @@ func _physics_process(delta):
 
 	var direction = (transform.basis * Vector3(input_dir.x, float_dir, input_dir.y)).normalized()
 	if direction:
-		velocity = direction * SPEED
+		velocity = direction * SPEED * CharacterInfo.current_char["dex"]
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.y = move_toward(velocity.y, 0, SPEED)
@@ -32,3 +54,46 @@ func _physics_process(delta):
 	move_and_slide()
 	self.rotation_degrees.x = look_rot.x
 	self.rotation_degrees.y = look_rot.y
+	
+	if working and work_curve:
+		var ratio = ( (work_timer.wait_time - work_timer.time_left) / work_timer.wait_time)
+		var work_length = attack_curve.get_baked_length()
+		var sample_point = ratio * work_length
+		char_body.position = work_curve.sample_baked(sample_point) * attack_mag
+	
+	cooldown_label.text = "%3.1f" % cooldown_timer.time_left
+	var ratio = (cooldown_timer.time_left) / (cooldown_timer.wait_time)
+	cooldown_bar.value = ratio
+
+func work(curve, time):
+	working = true
+	work_timer.wait_time = time
+	work_timer.start(time)
+	work_curve = curve
+
+func end_working():
+	working = false
+	var cooldown_time_actual = cooldown_time / CharacterInfo.current_char["int"]
+	cooldown_timer.start(cooldown_time_actual)
+	work_curve = null
+
+func attack(): 
+	work(attack_curve, attack_time)
+	var n_hs = hit_scene.instantiate()
+	add_child(n_hs)
+	cooldown_time = attack_cooldown
+
+func yes():
+	pass
+
+func no():
+	pass
+
+func use_ability():
+	var n_ability_scene = load(CharacterInfo.current_char["ability"]).instantiate()
+	add_child(n_ability_scene)
+	work(n_ability_scene.animation, n_ability_scene.animation_time)
+	cooldown_time = n_ability_scene.cooldown_time
+
+func use_item():
+	pass

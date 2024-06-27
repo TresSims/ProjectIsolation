@@ -15,10 +15,17 @@ var start_cell:Vector3
 @export var maze_cell_range := Vector2(3,6)
 
 var wall_size = 18
-var wall_thick = 1
+var wall_thick = 2
+var offset = 0
+var maze_scale = Vector3(1.1, 1.1, 1)
 @export var wall:PackedScene
+@export var border_wall:PackedScene
 
 var maze_graph:Array
+
+@export var goal:PackedScene
+@export var player:PackedScene
+
 
 # Bit Masks
 var WALL_ABOVE = 1
@@ -85,10 +92,6 @@ func _ready():
 	
 	# Mark starting square as connected to the maze
 	current_cell = goal_cell
-	print_debug(maze_dimensions)
-	print_debug(maze_graph)
-	print_debug(goal_cell)
-	print_debug(current_cell)
 	maze_graph[current_cell.x][current_cell.y][current_cell.z] &= ~(QUEUED + IN_MAZE)
 	
 	# Remember the surrounding squares as we will...
@@ -104,8 +107,6 @@ func _ready():
 				maze_graph[x_dx][y_dy][z_dz] &= ~QUEUED
 
 func build_cell_wall(cell, cell_position):
-	var offset = 1
-	var maze_scale = Vector3(7, 7, 2)
 	var cell_x = (cell_position.x * wall_size) + offset 
 	var cell_y = (cell_position.y * wall_size) + offset
 	var cell_z = (cell_position.z * wall_size) + offset
@@ -174,6 +175,70 @@ func build_cell_wall(cell, cell_position):
 		n_wall.position = Vector3(n_x, n_y, n_z)
 		n_wall.scale = maze_scale
 		add_child(n_wall)
+	
+	# Perimiter Walls
+	if cell_position.x == 0:
+		n_wall = border_wall.instantiate()
+		n_x = cell_x - wall_size/2 - wall_thick
+		n_y = cell_y
+		n_z = cell_z
+		n_wall.position = Vector3(n_x, n_y, n_z)
+		n_wall.rotation.y = deg_to_rad(90)
+		n_wall.scale = maze_scale
+		add_child(n_wall)
+	if cell_position.x == maze_dimensions.x-1:
+		n_wall = border_wall.instantiate()
+		n_x = cell_x + wall_size/2 + wall_thick
+		n_y = cell_y
+		n_z = cell_z
+		n_wall.position = Vector3(n_x, n_y, n_z)
+		n_wall.rotation.y = deg_to_rad(90)
+		n_wall.scale = maze_scale
+		add_child(n_wall)
+	if cell_position.y == 0:
+		n_wall = border_wall.instantiate()
+		n_x = cell_x
+		n_y = cell_y - wall_size/2 - wall_thick
+		n_z = cell_z
+		n_wall.position = Vector3(n_x, n_y, n_z)
+		n_wall.rotation.x = deg_to_rad(90)
+		n_wall.scale = maze_scale
+		add_child(n_wall)
+	if cell_position.y == maze_dimensions.y-1:
+		n_wall = border_wall.instantiate()
+		n_x = cell_x
+		n_y = cell_y + wall_size/2 + wall_thick
+		n_z = cell_z
+		n_wall.position = Vector3(n_x, n_y, n_z)
+		n_wall.rotation.x = deg_to_rad(90)
+		n_wall.scale = maze_scale
+		add_child(n_wall)
+	if cell_position.z == maze_dimensions.z-1:
+		n_wall = border_wall.instantiate()
+		n_x = cell_x
+		n_y = cell_y 
+		n_z = cell_z + wall_size/2 + wall_thick
+		n_wall.position = Vector3(n_x, n_y, n_z)
+		n_wall.scale = maze_scale
+		add_child(n_wall)
+	if cell_position.z == 0:
+		n_wall = border_wall.instantiate()
+		n_x = cell_x
+		n_y = cell_y 
+		n_z = cell_z - wall_size/2 - wall_thick
+		n_wall.position = Vector3(n_x, n_y, n_z)
+		n_wall.scale = maze_scale
+		add_child(n_wall)
+		
+
+func add_branch_to_cell(branch, cell_position):
+	var cell_x = (cell_position.x * wall_size)
+	var cell_y = (cell_position.y * wall_size)
+	var cell_z = (cell_position.z * wall_size)
+	
+	var n_branch = branch.instantiate()
+	n_branch.position = Vector3(cell_x, cell_y, cell_z)
+	add_child(n_branch)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -186,7 +251,7 @@ func _process(delta):
 			y_dy = y + dy[di]
 			z_dz = z + dz[di]
 			if x_dx >= 0 && x_dx < maze_dimensions.x && y_dy >= 0 && y_dy < maze_dimensions.y && z_dz >= 0 && z_dz < maze_dimensions.z:
-				if maze_graph[x_dx][y_dy][z_dz] & IN_MAZE == 0:
+				if (maze_graph[x_dx][y_dy][z_dz] & IN_MAZE) == 0:
 					passBool = 1
 					maze_connect(x, y, z)
 					done_nodes += 1
@@ -208,6 +273,12 @@ func _process(delta):
 				for z in range(0, len(maze_graph[x][y])):
 					build_cell_wall(maze_graph[x][y][z], Vector3(x, y, z))
 		
+		add_branch_to_cell(goal, goal_cell)
+		add_branch_to_cell(player, Vector3(
+			Starmaps.rng.randi_range(0, maze_dimensions.x - 1 ),
+			Starmaps.rng.randi_range(0, maze_dimensions.y - 1 ),
+			Starmaps.rng.randi_range(0, maze_dimensions.z - 1 )
+		))
 		done = true
 		load_screen.visible = false
 
