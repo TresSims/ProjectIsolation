@@ -1,46 +1,61 @@
-[gd_scene load_steps=5 format=3 uid="uid://dy2nk3fo4w8qu"]
+[gd_scene load_steps=7 format=3 uid="uid://dy2nk3fo4w8qu"]
 
-[ext_resource type="Script" path="res://Content/Core/AddOns/Dash/GD_Dash.gd" id="1_j78xl"]
+[ext_resource type="Script" path="res://Content/Core/AddOns/WallBreak/GD_WallBreak.gd" id="1_as7er"]
+[ext_resource type="Curve3D" uid="uid://b5eh1orifudtg" path="res://Content/Core/Characters/Starretri/C_AttackAnim.tres" id="2_ayc81"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jmc4w"]
 emission_shape = 1
 emission_sphere_radius = 0.5
-angle_min = -360.0
-angle_max = 360.0
+angle_min = -15.0
+angle_max = 18.0
 direction = Vector3(0, 1, 0)
-spread = 180.0
+spread = 20.0
 flatness = 0.5
-initial_velocity_min = 10.0
-initial_velocity_max = 20.0
+initial_velocity_min = 30.0
+initial_velocity_max = 40.0
 gravity = Vector3(0, 0, 0)
 damping_min = 50.0
 damping_max = 50.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a8we5"]
-albedo_color = Color(0, 1, 0, 1)
+albedo_color = Color(0.843349, 0.0523073, 9.62615e-08, 1)
 emission_enabled = true
-emission = Color(0, 1, 0, 1)
+emission = Color(0.843137, 0.0509804, 0, 1)
 
-[sub_resource type="SphereMesh" id="SphereMesh_j6wv4"]
+[sub_resource type="SphereMesh" id="SphereMesh_ytpcl"]
 material = SubResource("StandardMaterial3D_a8we5")
 radius = 0.05
 height = 0.1
 radial_segments = 8
 rings = 8
 
-[node name="Dash" type="Node3D"]
-script = ExtResource("1_j78xl")
-animation_time = 5.0
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x88ng"]
+radius = 0.563303
+height = 3.28164
+
+[node name="WallBreak" type="Area3D"]
+collision_layer = 3
+collision_mask = 2
+script = ExtResource("1_as7er")
+animation = ExtResource("2_ayc81")
+animation_time = 0.2
+cooldown_time = 5.0
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(-0.000767437, 0.0251184, 0.999684, -0.999534, -0.0305386, 0, 0.0305289, -0.999218, 0.0251301, 0, 0, 0)
 emitting = false
 amount = 100
 lifetime = 0.25
 one_shot = true
 explosiveness = 0.92
 process_material = SubResource("ParticleProcessMaterial_jmc4w")
-draw_pass_1 = SubResource("SphereMesh_j6wv4")
+draw_pass_1 = SubResource("SphereMesh_ytpcl")
 
 [node name="Timer" type="Timer" parent="."]
 
+[node name="Hitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.000199255, -0.0154268, 0.999881, -0.999938, 0.0111844, 0.000371827, -0.0111889, -0.999819, -0.0154236, 0.0303078, 0.0666669, -1.98503)
+shape = SubResource("CapsuleShape3D_x88ng")
+
+[connection signal="body_entered" from="." to="." method="_on_hit"]
 [connection signal="timeout" from="Timer" to="." method="expire"]
