@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://c6xc2d05vyrk0"]
+
+[ext_resource type="Script" path="res://Content/Core/AddOns/DexBoost/GD_DexBoost.gd" id="1_jud17"]
+[ext_resource type="Curve3D" uid="uid://cxs1tbwlytiej" path="res://Content/Core/Characters/Starretri/C_HappyAnim.tres" id="2_nn5r8"]
+[ext_resource type="Texture2D" uid="uid://ctbdn308pvdvo" path="res://Content/Art/PowerUps/AddOns/T_DexUp.png" id="3_7yanr"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jmc4w"]
+emission_shape = 1
+emission_sphere_radius = 0.5
+angle_min = -360.0
+angle_max = 360.0
+direction = Vector3(0, 1, 0)
+spread = 180.0
+flatness = 0.5
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+gravity = Vector3(0, 10, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a8we5"]
+albedo_color = Color(0.189772, 0.582063, 0.196146, 1)
+emission_enabled = true
+emission = Color(0.25836, 0.871755, 0.278262, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_il0yu"]
+material = SubResource("StandardMaterial3D_a8we5")
+radius = 0.05
+height = 0.1
+radial_segments = 8
+rings = 8
+
+[node name="DexBoost" type="Node3D"]
+script = ExtResource("1_jud17")
+animation = ExtResource("2_nn5r8")
+cooldown_time = 0.0
+addon_name = "Dex Increase"
+texture = ExtResource("3_7yanr")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 100
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.92
+process_material = SubResource("ParticleProcessMaterial_jmc4w")
+draw_pass_1 = SubResource("SphereMesh_il0yu")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="expire"]

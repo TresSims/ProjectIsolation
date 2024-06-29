@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://derbt1o7xjf4y"]
+[gd_scene load_steps=5 format=3 uid="uid://derbt1o7xjf4y"]
 
 [ext_resource type="Script" path="res://Content/Core/AddOns/Hint/GD_Hint.gd" id="1_68sja"]
+[ext_resource type="Texture2D" uid="uid://bc3i4l3gfxs6a" path="res://Content/Art/PowerUps/AddOns/T_Hint.png" id="2_qjscv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sg8hb"]
 transparency = 1
@@ -17,6 +18,8 @@ cap_bottom = false
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_68sja")
 cooldown_time = 10.0
+addon_name = "Hint"
+texture = ExtResource("2_qjscv")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-5.73206e-15, -1.31134e-07, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, 1.31134e-07, -0.011163, -2.38419e-07, -1.56739)

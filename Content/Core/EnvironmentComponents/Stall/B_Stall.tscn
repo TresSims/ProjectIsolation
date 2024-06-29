@@ -1,0 +1,56 @@
+[gd_scene load_steps=11 format=3 uid="uid://dfwoie5xj8b2t"]
+
+[ext_resource type="PackedScene" uid="uid://debfgvbiwdu7n" path="res://Content/Core/EnvironmentComponents/Wall/B_Wall_Border.tscn" id="1_86sqd"]
+[ext_resource type="Script" path="res://Content/Core/EnvironmentComponents/Stall/GD_Stall.gd" id="1_qqpsy"]
+[ext_resource type="PackedScene" uid="uid://cr7vch2x1y0ch" path="res://Content/Core/EnvironmentComponents/Pillar/B_Pillar.tscn" id="2_hn6lc"]
+[ext_resource type="PackedScene" uid="uid://dynm1ggtit6g6" path="res://Content/Core/AddOns/Dash/B_Dash.tscn" id="2_uv4ti"]
+[ext_resource type="PackedScene" uid="uid://c6xc2d05vyrk0" path="res://Content/Core/AddOns/DexBoost/B_DexBoost.tscn" id="3_i1ba8"]
+[ext_resource type="PackedScene" uid="uid://derbt1o7xjf4y" path="res://Content/Core/AddOns/Hint/B_Hint.tscn" id="4_lqfkh"]
+[ext_resource type="PackedScene" uid="uid://soi4m4qbe6ve" path="res://Content/Core/AddOns/IntBoost/B_IntBoost.tscn" id="5_en6qs"]
+[ext_resource type="PackedScene" uid="uid://bl8gmmmsujigm" path="res://Content/Core/AddOns/StrBoost/B_StrBoost.tscn" id="6_dgkg7"]
+[ext_resource type="PackedScene" uid="uid://dy2nk3fo4w8qu" path="res://Content/Core/AddOns/WallBreak/B_WallBreak.tscn" id="7_g7uup"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_glney"]
+size = Vector3(8.73703, 8.59828, 10.9692)
+
+[node name="Area3D" type="Area3D"]
+script = ExtResource("1_qqpsy")
+PowerUps = Array[PackedScene]([ExtResource("2_uv4ti"), ExtResource("3_i1ba8"), ExtResource("4_lqfkh"), ExtResource("5_en6qs"), ExtResource("6_dgkg7"), ExtResource("7_g7uup")])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.999261, 0, 0, 0, 0.999261, 0, 0, 0, 0.999261, 0.125778, 4.04391, -0.830811)
+shape = SubResource("BoxShape3D_glney")
+
+[node name="Stall" type="Node3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+
+[node name="SM_Wall3" parent="Stall" instance=ExtResource("1_86sqd")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 16.2921, -19.712)
+color = Color(0.101283, 0.449367, 0.709206, 1)
+
+[node name="SM_Wall4" parent="Stall" node_paths=PackedStringArray("colorizable_objects") instance=ExtResource("1_86sqd")]
+transform = Transform3D(2, 0, 0, 0, -8.74228e-08, -2, 0, 2, -8.74228e-08, 0, 0, -2.363)
+colorizable_objects = [NodePath("../SM_Wall3/Wall")]
+
+[node name="SM_Pillar" parent="." instance=ExtResource("2_hn6lc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.60839, 0)
+size = 0.9
+color = Color(0.145098, 0.619608, 0.647059, 1)
+
+[node name="SpawnSpot" type="Node3D" parent="SM_Pillar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.37843, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.0148523, 0.99989, 0, -0.99989, -0.0148523, 0, 8.42176, -0.275111)
+light_color = Color(0.997806, 0.939115, 0.906651, 1)
+light_energy = 9.767
+light_indirect_energy = 6.155
+light_volumetric_fog_energy = 7.442
+light_specular = 9.151
+spot_range = 11.405
+spot_attenuation = 1.51572
+spot_angle = 35.95
+spot_angle_attenuation = 0.870553
+
+[connection signal="body_entered" from="." to="." method="on_enter"]
+[connection signal="body_exited" from="." to="." method="on_leave"]

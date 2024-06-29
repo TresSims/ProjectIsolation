@@ -9,5 +9,5 @@ func _process(delta):
 		queue_free()
 
 func take_damage():
-	hits -= (CharacterInfo.current_char["str"])
+	hits -= (Starmaps.current_starmap["character"]["str"])
 	print_debug(hits)
