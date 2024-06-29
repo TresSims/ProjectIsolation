@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dfwoie5xj8b2t"]
+[gd_scene load_steps=15 format=3 uid="uid://dfwoie5xj8b2t"]
 
 [ext_resource type="PackedScene" uid="uid://debfgvbiwdu7n" path="res://Content/Core/EnvironmentComponents/Wall/B_Wall_Border.tscn" id="1_86sqd"]
 [ext_resource type="Script" path="res://Content/Core/EnvironmentComponents/Stall/GD_Stall.gd" id="1_qqpsy"]
@@ -9,9 +9,34 @@
 [ext_resource type="PackedScene" uid="uid://soi4m4qbe6ve" path="res://Content/Core/AddOns/IntBoost/B_IntBoost.tscn" id="5_en6qs"]
 [ext_resource type="PackedScene" uid="uid://bl8gmmmsujigm" path="res://Content/Core/AddOns/StrBoost/B_StrBoost.tscn" id="6_dgkg7"]
 [ext_resource type="PackedScene" uid="uid://dy2nk3fo4w8qu" path="res://Content/Core/AddOns/WallBreak/B_WallBreak.tscn" id="7_g7uup"]
+[ext_resource type="Texture2D" uid="uid://de7srteeif7no" path="res://Content/Art/PowerUps/AddOns/T_None.png" id="10_mmp65"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_glney"]
 size = Vector3(8.73703, 8.59828, 10.9692)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bgkjm"]
+emission_shape = 1
+emission_sphere_radius = 0.5
+angle_min = -360.0
+angle_max = 360.0
+direction = Vector3(0, 1, 0)
+spread = 180.0
+flatness = 0.5
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+gravity = Vector3(0, 10, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a8we5"]
+albedo_color = Color(0.866667, 0.929412, 0.133333, 1)
+emission_enabled = true
+emission = Color(0.866667, 0.929412, 0.133333, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_frtab"]
+material = SubResource("StandardMaterial3D_a8we5")
+radius = 0.05
+height = 0.1
+radial_segments = 8
+rings = 8
 
 [node name="Area3D" type="Area3D"]
 script = ExtResource("1_qqpsy")
@@ -51,6 +76,20 @@ spot_range = 11.405
 spot_attenuation = 1.51572
 spot_angle = 35.95
 spot_angle_attenuation = 0.870553
+
+[node name="ItemSprite" type="Sprite3D" parent="."]
+transform = Transform3D(5.95491, 0, 0, 0, 5.95491, 0, 0, 0, 5.95491, 0, 2.4618, 0)
+texture = ExtResource("10_mmp65")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4618, 0)
+emitting = false
+amount = 100
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.92
+process_material = SubResource("ParticleProcessMaterial_bgkjm")
+draw_pass_1 = SubResource("SphereMesh_frtab")
 
 [connection signal="body_entered" from="." to="." method="on_enter"]
 [connection signal="body_exited" from="." to="." method="on_leave"]

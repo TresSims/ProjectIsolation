@@ -27,6 +27,8 @@ var attack_mag = 1
 @onready var my_item_texture = $Control/MarginContainer/VBoxContainer/HBoxContainer3/ItemTexture
 @export var none_tex:Texture
 
+@onready var point_label = $Points/MarginContainer/HBoxContainer/PointValue
+
 var stall
 @onready var stall_dialogue = $StallDialogue
 @onready var item_name = $StallDialogue/MarginContainer/PanelContainer/MarginContainer2/VBoxContainer/ItemName
@@ -39,10 +41,18 @@ func _ready():
 	ability_texture.texture = the_ability.texture
 	ability_name.text = "[SHIFT] %s" % the_ability.addon_name
 	
-	if Starmaps.current_starmap["character"].has(["item"]):
+	point_label.text = "%d" % Starmaps.current_starmap["character"]["exp"]
+	update_item()
+	
+	
+
+func update_item():
+	print_debug("We're updating our item!")
+	if Starmaps.current_starmap["character"].has("item"):
 		var the_item = load(Starmaps.current_starmap["character"]["item"]).instantiate()
 		my_item_name.text = "[CTRL] %s" % the_item.addon_name
 		my_item_texture.texture = the_item.texture
+		add_child(the_item)
 	else:
 		my_item_name.text = "N/A"
 
@@ -57,7 +67,13 @@ func _input(event):
 		
 		if event.is_action_pressed("ability"):
 			use_ability()
-
+		
+		if event.is_action_pressed("item"):
+			use_item()
+		
+		if event.is_action_pressed("yes"):
+			yes()
+			
 func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -106,11 +122,11 @@ func attack():
 
 func yes():
 	if stall:
-		if not stall.sold_out and Starmaps.current_starmap["character"]["exp"] >= stall.price:
-			Starmaps.current_starmap["character"]["item"] = stall.item
-			stall.sold_out = true
-			Starmaps.current_starmap["character"]["exp"] -= stall.price
-			my_item_texture = stall.item.instantiate().texture
+		if not stall.sold_out and Starmaps.current_starmap["character"]["exp"] >= stall.cost:
+			Starmaps.current_starmap["character"]["item"] = stall.item_scene.resource_path
+			get_points(-stall.cost)
+			stall.buy_item()
+			update_item()
 
 func set_stall(body):
 	stall = body
@@ -128,14 +144,21 @@ func set_stall(body):
 func use_ability():
 	var n_ability_scene = load(Starmaps.current_starmap["character"]["ability"]).instantiate()
 	add_child(n_ability_scene)
+	n_ability_scene._use()
 	work(n_ability_scene.animation, n_ability_scene.animation_time)
 	cooldown_time = n_ability_scene.cooldown_time
 
 func use_item():
-	if Starmaps.current_starmap["character"]["item"] != "":
+	if Starmaps.current_starmap["character"].has("item"):
 		var n_ability_scene = load(Starmaps.current_starmap["character"]["item"]).instantiate()
 		add_child(n_ability_scene)
+		n_ability_scene._use()
 		work(n_ability_scene.animation, n_ability_scene.animation_time)
 		cooldown_time = n_ability_scene.cooldown_time
-		Starmaps.current_starmap["character"]["item"] = ""
+		Starmaps.current_starmap["character"].erase("item")
 		my_item_texture.texture = none_tex
+		update_item()
+
+func get_points(points):
+	Starmaps.current_starmap["character"]["exp"] += points
+	point_label.text = "%d" % Starmaps.current_starmap["character"]["exp"]

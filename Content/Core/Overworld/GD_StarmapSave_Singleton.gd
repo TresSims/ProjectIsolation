@@ -201,7 +201,6 @@ func solve():
 	save_starmap()
 	if completed_map["type"] == GOAL:
 		navigate_to_win()
-		CharacterInfo.save_char(CharacterInfo.current_char)
 		clear_map()
 	else:
 		navigate_to_starmap()

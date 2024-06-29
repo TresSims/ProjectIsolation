@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://coywj5kl2qfg3"]
+[gd_scene load_steps=9 format=3 uid="uid://coywj5kl2qfg3"]
 
 [ext_resource type="Script" path="res://Content/Core/Characters/Starretri/GD_Stary.gd" id="1_vihag"]
 [ext_resource type="Curve3D" uid="uid://b5eh1orifudtg" path="res://Content/Core/Characters/Starretri/C_AttackAnim.tres" id="2_cc6cp"]
 [ext_resource type="PackedScene" uid="uid://dbn8htlc45n7c" path="res://Content/Core/Characters/Starretri/B_AttackBox.tscn" id="3_jvy1y"]
 [ext_resource type="Texture2D" uid="uid://de7srteeif7no" path="res://Content/Art/PowerUps/AddOns/T_None.png" id="4_u27hj"]
+[ext_resource type="Texture2D" uid="uid://cnt7pyva75x7f" path="res://Content/Art/PowerUps/AddOns/T_Points.png" id="5_g24jl"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tgekv"]
 radius = 0.569079
@@ -154,5 +155,42 @@ text = "$$$"
 layout_mode = 2
 size_flags_horizontal = 4
 text = "[Y] To Buy"
+
+[node name="Points" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Points"]
+layout_mode = 0
+offset_left = -200.0
+offset_right = 40.0
+offset_bottom = 106.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Points/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="TextureRect" type="TextureRect" parent="Points/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_g24jl")
+expand_mode = 2
+
+[node name="PointValue" type="Label" parent="Points/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "0
+"
+
+[node name="Label" type="Label" parent="Points/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Points"
 
 [connection signal="timeout" from="WorkTimer" to="." method="end_working"]

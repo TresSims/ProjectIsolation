@@ -7,7 +7,7 @@ var base_speed
 @onready var lifetime = $Timer
 @onready var fx = $GPUParticles3D
 
-func _ready():
+func _use():
 	player = get_parent()
 	base_speed = player.SPEED
 	new_speed = base_speed + 10

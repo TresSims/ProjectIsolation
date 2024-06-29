@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://crsm6vdtryvyo"]
+
+[ext_resource type="PackedScene" uid="uid://xj8t8hi7whhp" path="res://Content/Art/PowerUps/PowerCrystal/PowerCrystal.glb" id="1_8iulv"]
+[ext_resource type="Script" path="res://Content/Core/Points/GD_Points.gd" id="1_mpy5h"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3163r"]
+radius = 1.0
+
+[node name="Points" type="Area3D"]
+script = ExtResource("1_mpy5h")
+
+[node name="PowerCrystal" parent="." instance=ExtResource("1_8iulv")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_3163r")
+
+[connection signal="body_entered" from="." to="." method="_on_hit"]

@@ -6,7 +6,7 @@ var goal
 
 @onready var timer = $Timer
 
-func _ready():
+func _use():
 	timer.start(animation_time)
 	goal = get_node("../../GoalPortal")
 	print_debug(goal)

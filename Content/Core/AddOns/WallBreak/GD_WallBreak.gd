@@ -5,7 +5,7 @@ extends AddOn
 
 @export var hit_multiplier:int = 10
 
-func _ready():
+func _use():
 	lifetime.wait_time = animation_time
 	lifetime.start(animation_time)
 	fx.emitting = true

@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://ocjchu0lxdcc"]
+[gd_scene load_steps=10 format=3 uid="uid://ocjchu0lxdcc"]
 
 [ext_resource type="Environment" uid="uid://cu3l378x4crcl" path="res://Content/Art/Environments/E_Space.tres" id="1_mo72u"]
 [ext_resource type="PackedScene" uid="uid://coywj5kl2qfg3" path="res://Content/Core/Characters/Starretri/B_Stary.tscn" id="2_wss3u"]
 [ext_resource type="PackedScene" uid="uid://bhsasscut5vvh" path="res://Content/Core/EnvironmentComponents/Wall/B_Wall.tscn" id="3_jtfeo"]
+[ext_resource type="PackedScene" uid="uid://crsm6vdtryvyo" path="res://Content/Core/Points/B_Points.tscn" id="3_pv82y"]
+[ext_resource type="PackedScene" uid="uid://bwr0vpu4jvqlx" path="res://Content/Core/Points/B_Points_Big.tscn" id="4_tafky"]
 [ext_resource type="PackedScene" uid="uid://bhxowuwtd4fvm" path="res://Content/Core/EnvironmentComponents/Portal/B_GoalPortal.tscn" id="5_oblnl"]
 [ext_resource type="PackedScene" uid="uid://debfgvbiwdu7n" path="res://Content/Core/EnvironmentComponents/Wall/B_Wall_Border.tscn" id="5_u6swj"]
 [ext_resource type="Script" path="res://Content/Core/Mazes/GD_MazeGen.gd" id="6_8fofj"]
@@ -20,6 +22,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.15217)
 script = ExtResource("6_8fofj")
 load_progress = NodePath("../Control/PanelContainer/MarginContainer/VBoxContainer/LoadProgress")
 load_screen = NodePath("../Control")
+spawnables = Array[PackedScene]([ExtResource("3_pv82y"), ExtResource("4_tafky")])
 wall = ExtResource("3_jtfeo")
 border_wall = ExtResource("5_u6swj")
 goal = ExtResource("5_oblnl")

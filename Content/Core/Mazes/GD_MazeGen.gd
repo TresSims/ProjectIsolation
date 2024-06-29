@@ -6,6 +6,8 @@ class_name MazeGenerator
 var done_nodes = 0
 var total_nodes
 
+@export var spawnables:Array[PackedScene]
+
 
 var maze_dimensions:Vector3 = Vector3(2,2,2)
 var goal_cell:Vector3 = Vector3(0, 0, 0)
@@ -271,7 +273,10 @@ func _process(delta):
 		for x in range(0, len(maze_graph)):
 			for y in range(0, len(maze_graph[x])):
 				for z in range(0, len(maze_graph[x][y])):
-					build_cell_wall(maze_graph[x][y][z], Vector3(x, y, z))
+					var this_cell = Vector3(x, y, z)
+					build_cell_wall(maze_graph[x][y][z], this_cell)
+					if Starmaps.rng.randi_range(0, 10) > 6:
+						add_branch_to_cell(spawnables[Starmaps.rng.randi_range(0, len(spawnables)-1)], this_cell)
 		
 		add_branch_to_cell(goal, goal_cell)
 		add_branch_to_cell(player, Vector3(
