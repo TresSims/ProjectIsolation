@@ -18,6 +18,7 @@ var character_list_example = {
 			"dex": 1,
 			"hp": 3,
 			"ability": "res://Content/Core/AddOns/Hint/B_Hint.tscn",
+			"item": "",
 			"exp": 0,
 			"level": 1,
 			"locked": false,
@@ -30,6 +31,7 @@ var character_list_example = {
 			"dex": 1,
 			"hp": 3,
 			"ability": "res://Content/Core/AddOns/WallBreak/B_WallBreak.tscn",
+			"item": "",
 			"exp": 0,
 			"level": 1,
 			"locked": true,
@@ -42,6 +44,7 @@ var character_list_example = {
 			"dex": 3,
 			"hp": 3,
 			"ability": "res://Content/Core/AddOns/Dash/B_Dash.tscn",
+			"item": "",
 			"exp": 0,
 			"level": 1,
 			"locked": true,
@@ -103,5 +106,5 @@ func save_char(character):
 
 func set_char(new_char):
 	current_char = new_char
-	Starmaps.current_starmap["character"] = new_char["name"]
+	Starmaps.current_starmap["character"] = new_char
 	Starmaps.save_starmap()

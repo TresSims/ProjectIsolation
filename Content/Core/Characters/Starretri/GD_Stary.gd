@@ -19,16 +19,37 @@ var attack_time = .3
 var attack_cooldown = 1.5
 var attack_mag = 1
 
-@onready var cooldown_label = $Control/HBoxContainer/Count
-@onready var cooldown_bar = $Control/HBoxContainer/Progress 
+@onready var cooldown_label = $Control/MarginContainer/VBoxContainer/HBoxContainer/Count
+@onready var cooldown_bar = $Control/MarginContainer/VBoxContainer/HBoxContainer/Progress
+@onready var ability_texture = $Control/MarginContainer/VBoxContainer/HBoxContainer2/AbilityTexture
+@onready var ability_name =$Control/MarginContainer/VBoxContainer/HBoxContainer2/AbilityName
+@onready var my_item_name = $Control/MarginContainer/VBoxContainer/HBoxContainer3/ItemName
+@onready var my_item_texture = $Control/MarginContainer/VBoxContainer/HBoxContainer3/ItemTexture
+@export var none_tex:Texture
+
+var stall
+@onready var stall_dialogue = $StallDialogue
+@onready var item_name = $StallDialogue/MarginContainer/PanelContainer/MarginContainer2/VBoxContainer/ItemName
+@onready var item_cost = $StallDialogue/MarginContainer/PanelContainer/MarginContainer2/VBoxContainer/ItemCost
+
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	var the_ability = load(Starmaps.current_starmap["character"]["ability"]).instantiate()
+	ability_texture.texture = the_ability.texture
+	ability_name.text = "[SHIFT] %s" % the_ability.addon_name
+	
+	if Starmaps.current_starmap["character"].has(["item"]):
+		var the_item = load(Starmaps.current_starmap["character"]["item"]).instantiate()
+		my_item_name.text = "[CTRL] %s" % the_item.addon_name
+		my_item_texture.texture = the_item.texture
+	else:
+		my_item_name.text = "N/A"
 
 func _input(event):
 	if event is InputEventMouseMotion:
+		look_rot.x = clamp(look_rot.x - (event.relative.y * sensitivity), -60, 60)
 		look_rot.y -= (event.relative.x * sensitivity)
-		look_rot.x -= (event.relative.y * sensitivity)
 	
 	if not working and cooldown_timer.time_left == 0:
 		if event.is_action_pressed("attack"):
@@ -45,7 +66,7 @@ func _physics_process(delta):
 
 	var direction = (transform.basis * Vector3(input_dir.x, float_dir, input_dir.y)).normalized()
 	if direction:
-		velocity = direction * SPEED * CharacterInfo.current_char["dex"]
+		velocity = direction * SPEED * Starmaps.current_starmap["character"]["dex"]
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.y = move_toward(velocity.y, 0, SPEED)
@@ -73,7 +94,7 @@ func work(curve, time):
 
 func end_working():
 	working = false
-	var cooldown_time_actual = cooldown_time / CharacterInfo.current_char["int"]
+	var cooldown_time_actual = cooldown_time / Starmaps.current_starmap["character"]["int"]
 	cooldown_timer.start(cooldown_time_actual)
 	work_curve = null
 
@@ -84,16 +105,37 @@ func attack():
 	cooldown_time = attack_cooldown
 
 func yes():
-	pass
+	if stall:
+		if not stall.sold_out and Starmaps.current_starmap["character"]["exp"] >= stall.price:
+			Starmaps.current_starmap["character"]["item"] = stall.item
+			stall.sold_out = true
+			Starmaps.current_starmap["character"]["exp"] -= stall.price
+			my_item_texture = stall.item.instantiate().texture
 
-func no():
-	pass
+func set_stall(body):
+	stall = body
+	if stall:
+		stall_dialogue.visible = true
+		item_name.text = stall.item.addon_name
+		item_cost.text = "$%d" % stall.cost
+		if stall.cost > Starmaps.current_starmap["character"]["exp"]:
+			item_cost.add_theme_color_override("font_color", Color(1, 0, 0))
+		else:
+			item_cost.add_theme_color_override("font_color", Color(1, 1, 1))
+	else:
+		stall_dialogue.visible = false
 
 func use_ability():
-	var n_ability_scene = load(CharacterInfo.current_char["ability"]).instantiate()
+	var n_ability_scene = load(Starmaps.current_starmap["character"]["ability"]).instantiate()
 	add_child(n_ability_scene)
 	work(n_ability_scene.animation, n_ability_scene.animation_time)
 	cooldown_time = n_ability_scene.cooldown_time
 
 func use_item():
-	pass
+	if Starmaps.current_starmap["character"]["item"] != "":
+		var n_ability_scene = load(Starmaps.current_starmap["character"]["item"]).instantiate()
+		add_child(n_ability_scene)
+		work(n_ability_scene.animation, n_ability_scene.animation_time)
+		cooldown_time = n_ability_scene.cooldown_time
+		Starmaps.current_starmap["character"]["item"] = ""
+		my_item_texture.texture = none_tex

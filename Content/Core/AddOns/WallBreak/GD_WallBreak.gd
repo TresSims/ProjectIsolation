@@ -14,7 +14,6 @@ func expire():
 	queue_free()
 
 func _on_hit(area):
-	
 	if area.get_parent().has_method("take_damage"):
 		for x in range(0, hit_multiplier):
 			area.get_parent().take_damage()

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://coywj5kl2qfg3"]
+[gd_scene load_steps=8 format=3 uid="uid://coywj5kl2qfg3"]
 
 [ext_resource type="Script" path="res://Content/Core/Characters/Starretri/GD_Stary.gd" id="1_vihag"]
 [ext_resource type="Curve3D" uid="uid://b5eh1orifudtg" path="res://Content/Core/Characters/Starretri/C_AttackAnim.tres" id="2_cc6cp"]
 [ext_resource type="PackedScene" uid="uid://dbn8htlc45n7c" path="res://Content/Core/Characters/Starretri/B_AttackBox.tscn" id="3_jvy1y"]
+[ext_resource type="Texture2D" uid="uid://de7srteeif7no" path="res://Content/Art/PowerUps/AddOns/T_None.png" id="4_u27hj"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tgekv"]
 radius = 0.569079
@@ -19,6 +20,7 @@ material = SubResource("StandardMaterial3D_gbp2g")
 script = ExtResource("1_vihag")
 attack_curve = ExtResource("2_cc6cp")
 hit_scene = ExtResource("3_jvy1y")
+none_tex = ExtResource("4_u27hj")
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_tgekv")
@@ -45,31 +47,112 @@ anchors_preset = 0
 offset_right = 541.0
 offset_bottom = 38.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 0
+offset_right = 502.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Cooldown:"
+
+[node name="Count" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="Label2" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "S"
+
+[node name="Progress" type="ProgressBar" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+show_percentage = false
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="AbilityTexture" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("4_u27hj")
+expand_mode = 2
+
+[node name="AbilityName" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Ability: ??? Cooldown: ???"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ItemTexture" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+texture = ExtResource("4_u27hj")
+expand_mode = 2
+
+[node name="ItemName" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Item:??? Cooldown: ???"
+
+[node name="StallDialogue" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -195.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="StallDialogue"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
 
-[node name="Label" type="Label" parent="Control/HBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="StallDialogue/MarginContainer"]
 layout_mode = 2
-text = "Cooldown:"
 
-[node name="Count" type="Label" parent="Control/HBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="StallDialogue/MarginContainer/PanelContainer"]
 layout_mode = 2
-text = "0"
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
 
-[node name="Label2" type="Label" parent="Control/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="StallDialogue/MarginContainer/PanelContainer/MarginContainer2"]
 layout_mode = 2
-text = "S"
 
-[node name="Progress" type="ProgressBar" parent="Control/HBoxContainer"]
+[node name="ItemName" type="Label" parent="StallDialogue/MarginContainer/PanelContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-max_value = 1.0
-show_percentage = false
+text = "Buy an XXX"
+
+[node name="ItemCost" type="Label" parent="StallDialogue/MarginContainer/PanelContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "$$$"
+
+[node name="Label3" type="Label" parent="StallDialogue/MarginContainer/PanelContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "[Y] To Buy"
 
 [connection signal="timeout" from="WorkTimer" to="." method="end_working"]

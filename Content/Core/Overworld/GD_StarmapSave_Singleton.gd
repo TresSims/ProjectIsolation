@@ -16,7 +16,7 @@ var starmap_scene = preload("res://Content/Maps/L_Overworld.tscn")
 var you_win = preload("res://Content/Maps/L_YouWin.tscn")
 
 var starmap_example = {
-	"character": "Starretri",
+	"character": {},
 	"seed": 1278491023,
 	"nodes": [
 		{
@@ -112,8 +112,11 @@ func load_starmap():
 	rng = RandomNumberGenerator.new()
 	rng.seed = current_starmap["seed"]
 	rng.state = current_starmap["seed_state"]
-	CharacterInfo.set_char(CharacterInfo.read_char_file(current_starmap["character"]))
 	return 1
+
+func _input(event):
+	if event.is_action_pressed("quit"):
+		get_tree().quit()
 
 func save_exists():
 	return FileAccess.file_exists(STARMAP_SAVE_LOCATION + STARMAP_FILE_NAME)
