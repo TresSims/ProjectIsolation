@@ -34,3 +34,4 @@ func buy_item():
 	sold_out = true
 	item_sprite.queue_free()
 	fx.emitting = true
+	item.queue_free()

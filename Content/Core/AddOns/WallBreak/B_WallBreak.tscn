@@ -57,8 +57,9 @@ draw_pass_1 = SubResource("SphereMesh_ytpcl")
 [node name="Timer" type="Timer" parent="."]
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.000199255, -0.0154268, 0.999881, -0.999938, 0.0111844, 0.000371827, -0.0111889, -0.999819, -0.0154236, 0.0303078, 0.0666669, -1.98503)
+transform = Transform3D(0.000199255, -0.0154268, 0.999881, -0.999938, 0.0111844, 0.000371827, -0.0111889, -0.999819, -0.0154236, 0.0303078, 0.0666669, -1.64307)
 shape = SubResource("CapsuleShape3D_x88ng")
+disabled = true
 
 [connection signal="body_entered" from="." to="." method="_on_hit"]
 [connection signal="timeout" from="Timer" to="." method="expire"]

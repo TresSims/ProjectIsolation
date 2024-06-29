@@ -13,7 +13,8 @@ func _use():
 	
 
 func _process(delta):
-	look_at(goal.position)
+	if goal:
+		look_at(goal.position)
 	var ratio = timer.time_left / animation_time
 	mesh.get_active_material(0).albedo_color = Color(0, .8, .8, ratio)
 

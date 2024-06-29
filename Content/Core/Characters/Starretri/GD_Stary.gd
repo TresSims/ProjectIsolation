@@ -53,6 +53,7 @@ func update_item():
 		my_item_name.text = "[CTRL] %s" % the_item.addon_name
 		my_item_texture.texture = the_item.texture
 		add_child(the_item)
+		the_item.queue_free()
 	else:
 		my_item_name.text = "N/A"
 
