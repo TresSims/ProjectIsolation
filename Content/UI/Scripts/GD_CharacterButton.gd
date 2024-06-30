@@ -20,6 +20,8 @@ var char_info = {
 @onready var dex_stat = $MarginContainer/VBox/Dex
 @onready var level_stat = $MarginContainer/VBox/Level
 @onready var select_button = $Select
+@onready var ability_icon = $MarginContainer/VBox/HBoxContainer/AbilityIcon
+@onready var ability_name = $MarginContainer/VBox/HBoxContainer/AbilityName
 
 func setup(character_info):
 	char_info = character_info
@@ -28,6 +30,10 @@ func setup(character_info):
 	str_stat.text = "Str: %d" % (char_info["str"])
 	dex_stat.text = "Dex: %s" % (char_info["dex"])
 	level_stat.text = "Lvl: %s" % (char_info["level"])
+	
+	var ability = load(char_info["ability"]).instantiate()
+	ability_icon.texture = ability.texture
+	ability_name.text = ability.addon_name
 	
 	var locked = char_info["locked"]
 	locked_image.visible = locked
