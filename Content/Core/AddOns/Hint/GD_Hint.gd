@@ -5,11 +5,14 @@ var goal
 @onready var mesh = $MeshInstance3D 
 
 @onready var timer = $Timer
+@onready var sound_player = $AudioStreamPlayer3D
 
 func _use():
 	timer.start(animation_time)
 	goal = get_node("../../GoalPortal")
 	print_debug(goal)
+	sound_player.stream = sfx
+	sound_player.play(0)
 	
 
 func _process(delta):

@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://c0ix7id7ixugo"]
+[gd_scene load_steps=12 format=3 uid="uid://c0ix7id7ixugo"]
 
+[ext_resource type="Texture2D" uid="uid://dpe46ncjopw0p" path="res://Content/UI/Overworld/T_OverworldBg.png" id="1_yv0ur"]
 [ext_resource type="Script" path="res://Content/Core/Overworld/GD_StarMap.gd" id="2_klgkk"]
 [ext_resource type="Shader" path="res://Content/UI/Overworld/M_PlanetButton.gdshader" id="3_f011y"]
 [ext_resource type="PackedScene" uid="uid://duclwubyc7yvl" path="res://Content/UI/Overworld/B_MapLocation.tscn" id="3_qmrfc"]
@@ -40,6 +41,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("1_yv0ur")
 expand_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

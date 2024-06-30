@@ -1,10 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dbn8htlc45n7c"]
+[gd_scene load_steps=4 format=3 uid="uid://dbn8htlc45n7c"]
 
 [ext_resource type="Script" path="res://Content/Core/Characters/Starretri/GD_AttackBox.gd" id="1_6dvlw"]
+[ext_resource type="AudioStream" uid="uid://bdk6cernt7i23" path="res://Content/Art/sfx/Punch.wav" id="2_gwi30"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y71p0"]
-radius = 0.563303
-height = 2.28181
+radius = 0.788186
+height = 3.64555
 
 [node name="AttackBox" type="Area3D"]
 transform = Transform3D(-0.0287765, 0, 0.999586, 0, 1, 0, -0.999586, 0, -0.0287765, 0, 0, 0)
@@ -13,13 +14,17 @@ collision_mask = 2
 script = ExtResource("1_6dvlw")
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]
-transform = Transform3D(-0.0129151, 0.999917, 0, -0.999917, -0.0129151, 0, 0, 0, 1, 0.570981, 0, 0)
+transform = Transform3D(-0.0129151, 0.999917, 0, -0.999917, -0.0129151, 0, 0, 0, 1, 1.34874, 0, 0.0223904)
 shape = SubResource("CapsuleShape3D_y71p0")
 
 [node name="LifeSpan" type="Timer" parent="."]
 wait_time = 0.3
 one_shot = true
 autostart = true
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_gwi30")
+autoplay = true
 
 [connection signal="body_entered" from="." to="." method="on_hit"]
 [connection signal="timeout" from="LifeSpan" to="." method="expire"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dy2nk3fo4w8qu"]
+[gd_scene load_steps=9 format=3 uid="uid://dy2nk3fo4w8qu"]
 
 [ext_resource type="Script" path="res://Content/Core/AddOns/WallBreak/GD_WallBreak.gd" id="1_as7er"]
 [ext_resource type="Curve3D" uid="uid://b5eh1orifudtg" path="res://Content/Core/Characters/Starretri/C_AttackAnim.tres" id="2_ayc81"]
 [ext_resource type="Texture2D" uid="uid://dvwbs7uxgkdo7" path="res://Content/Art/PowerUps/AddOns/T_WallBreakt.png" id="3_c35tx"]
+[ext_resource type="AudioStream" uid="uid://ckilvhavwp76w" path="res://Content/Art/sfx/WallSmash_4.wav" id="4_6pkpw"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jmc4w"]
 emission_shape = 1
@@ -43,6 +44,7 @@ animation_time = 0.2
 cooldown_time = 5.0
 addon_name = "Wall Break"
 texture = ExtResource("3_c35tx")
+sfx = ExtResource("4_6pkpw")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(-0.000767437, 0.0251184, 0.999684, -0.999534, -0.0305386, 0, 0.0305289, -0.999218, 0.0251301, 0, 0, 0)
@@ -60,6 +62,8 @@ draw_pass_1 = SubResource("SphereMesh_ytpcl")
 transform = Transform3D(0.000199255, -0.0154268, 0.999881, -0.999938, 0.0111844, 0.000371827, -0.0111889, -0.999819, -0.0154236, 0.0303078, 0.0666669, -1.64307)
 shape = SubResource("CapsuleShape3D_x88ng")
 disabled = true
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 
 [connection signal="body_entered" from="." to="." method="_on_hit"]
 [connection signal="timeout" from="Timer" to="." method="expire"]

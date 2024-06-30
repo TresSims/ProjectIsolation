@@ -7,6 +7,7 @@ class_name AddOn
 @export var addon_name = "ChangeMe"
 @export var cost = 5
 @export var texture:Texture2D
+@export var sfx:AudioStream
 
 
 # To Be overriden by children

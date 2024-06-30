@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://coywj5kl2qfg3"]
+[gd_scene load_steps=13 format=3 uid="uid://coywj5kl2qfg3"]
 
 [ext_resource type="Script" path="res://Content/Core/Characters/Starretri/GD_Stary.gd" id="1_vihag"]
 [ext_resource type="Curve3D" uid="uid://b5eh1orifudtg" path="res://Content/Core/Characters/Starretri/C_AttackAnim.tres" id="2_cc6cp"]
@@ -8,6 +8,7 @@
 [ext_resource type="Theme" uid="uid://6xwjf0v4e4yy" path="res://Content/UI/Scripts/IsolationTheme.theme" id="5_wwiro"]
 [ext_resource type="Texture2D" uid="uid://pkpdrhytr65q" path="res://Content/UI/Obj/HeartBroken.png" id="7_cjbc8"]
 [ext_resource type="Texture2D" uid="uid://b63lbe2bx76dj" path="res://Content/UI/Obj/Heart.png" id="8_nxjy5"]
+[ext_resource type="AudioStream" uid="uid://65sjgm6eei3r" path="res://Content/Art/Music/Isolation.wav" id="9_wdpsl"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tgekv"]
 radius = 0.569079
@@ -131,6 +132,7 @@ layout_mode = 2
 text = "Item:??? Cooldown: ???"
 
 [node name="StallDialogue" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 12
 anchor_top = 1.0
@@ -217,5 +219,10 @@ text = "0
 [node name="Label" type="Label" parent="Points/MarginContainer/HBoxContainer"]
 layout_mode = 2
 text = "Points"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_wdpsl")
+volume_db = -20.0
+autoplay = true
 
 [connection signal="timeout" from="WorkTimer" to="." method="end_working"]

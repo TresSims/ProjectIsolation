@@ -6,6 +6,7 @@ var base_speed
 
 @onready var lifetime = $Timer
 @onready var fx = $GPUParticles3D
+@onready var sound_player = $AudioStreamPlayer3D
 
 func _use():
 	player = get_parent()
@@ -14,6 +15,8 @@ func _use():
 	lifetime.wait_time = animation_time
 	lifetime.start(animation_time)
 	fx.emitting = true
+	sound_player.stream = sfx
+	sound_player.play(0)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
