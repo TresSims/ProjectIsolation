@@ -132,7 +132,7 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("6_gmlsk")
-text = "Help Starretri find friends to fight off the Isolation!"
+text = "Escape the evil Darksol to find new friends and exciting adventures along the way! "
 
 [node name="Button" type="Button" parent="MarginContainer/StarMap/MazeBox/MarginContainer/VBoxContainer"]
 layout_mode = 2
