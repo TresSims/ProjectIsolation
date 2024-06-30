@@ -25,7 +25,10 @@ func setup(locations, maze_box):
 		self.modulate = Color(.5, .5, .5, .5)
 	
 	self.texture_normal = load(meta["button_texture"])
-	#self.material.set_shader_parameter("gradient", load(meta["planet_theme"]))
+	print_debug(meta["planet_theme"])
+	var n_param = GradientTexture1D.new()
+	n_param.gradient = load(meta["planet_theme"])
+	self.material.set_shader_parameter("gradient", n_param)
 	
 	box = maze_box
 
