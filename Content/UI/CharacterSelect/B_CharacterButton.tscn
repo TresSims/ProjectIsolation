@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhsrq2mkr4f1h"]
+[gd_scene load_steps=6 format=3 uid="uid://bhsrq2mkr4f1h"]
 
 [ext_resource type="Script" path="res://Content/UI/Scripts/GD_CharacterButton.gd" id="1_km0w0"]
 [ext_resource type="Texture2D" uid="uid://bq6hsaisyuatc" path="res://Content/Art/Characters/Starretri/T_StarretriPortrait.jpg" id="1_kulls"]
+[ext_resource type="Theme" uid="uid://6xwjf0v4e4yy" path="res://Content/UI/Scripts/IsolationTheme.theme" id="2_4biv4"]
 [ext_resource type="Texture2D" uid="uid://2vuqloi34loi" path="res://Content/UI/CharacterSelect/T_Locked.png" id="2_enued"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eiw78"]
@@ -16,6 +17,7 @@ script = ExtResource("1_km0w0")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
+theme = ExtResource("2_4biv4")
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
@@ -63,6 +65,7 @@ layout_mode = 2
 text = "DEX: 1"
 
 [node name="Level" type="Label" parent="MarginContainer/VBox"]
+visible = false
 layout_mode = 2
 text = "Level: 1"
 
@@ -88,49 +91,12 @@ expand_mode = 5
 
 [node name="Label" type="Label" parent="MarginContainer/VBox/AbilityContainer/Ability 1"]
 layout_mode = 2
-text = "Locked"
-
-[node name="Ability 2" type="VBoxContainer" parent="MarginContainer/VBox/AbilityContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBox/AbilityContainer/Ability 2"]
-layout_mode = 2
-texture = ExtResource("2_enued")
-expand_mode = 4
-
-[node name="Label" type="Label" parent="MarginContainer/VBox/AbilityContainer/Ability 2"]
-layout_mode = 2
-text = "Locked"
-
-[node name="Ability 3" type="VBoxContainer" parent="MarginContainer/VBox/AbilityContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBox/AbilityContainer/Ability 3"]
-layout_mode = 2
-texture = ExtResource("2_enued")
-expand_mode = 4
-
-[node name="Label" type="Label" parent="MarginContainer/VBox/AbilityContainer/Ability 3"]
-layout_mode = 2
-text = "Locked"
-
-[node name="Ability 4" type="VBoxContainer" parent="MarginContainer/VBox/AbilityContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBox/AbilityContainer/Ability 4"]
-layout_mode = 2
-texture = ExtResource("2_enued")
-expand_mode = 4
-
-[node name="Label" type="Label" parent="MarginContainer/VBox/AbilityContainer/Ability 4"]
-layout_mode = 2
+theme = ExtResource("2_4biv4")
 text = "Locked"
 
 [node name="Select" type="Button" parent="."]
 layout_mode = 2
+theme = ExtResource("2_4biv4")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_eiw78")
 
 [connection signal="pressed" from="Select" to="." method="_select"]
