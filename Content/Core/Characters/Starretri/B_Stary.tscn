@@ -1,11 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://coywj5kl2qfg3"]
+[gd_scene load_steps=12 format=3 uid="uid://coywj5kl2qfg3"]
 
 [ext_resource type="Script" path="res://Content/Core/Characters/Starretri/GD_Stary.gd" id="1_vihag"]
 [ext_resource type="Curve3D" uid="uid://b5eh1orifudtg" path="res://Content/Core/Characters/Starretri/C_AttackAnim.tres" id="2_cc6cp"]
 [ext_resource type="PackedScene" uid="uid://dbn8htlc45n7c" path="res://Content/Core/Characters/Starretri/B_AttackBox.tscn" id="3_jvy1y"]
 [ext_resource type="Texture2D" uid="uid://de7srteeif7no" path="res://Content/Art/PowerUps/AddOns/T_None.png" id="4_u27hj"]
 [ext_resource type="Texture2D" uid="uid://cnt7pyva75x7f" path="res://Content/Art/PowerUps/AddOns/T_Points.png" id="5_g24jl"]
+[ext_resource type="Texture2D" uid="uid://pkpdrhytr65q" path="res://Content/UI/Obj/HeartBroken.png" id="5_qoagc"]
 [ext_resource type="AudioStream" uid="uid://65sjgm6eei3r" path="res://Content/Art/Music/Isolation.wav" id="6_ejld6"]
+[ext_resource type="Texture2D" uid="uid://b63lbe2bx76dj" path="res://Content/UI/Obj/Heart.png" id="6_gtyxq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tgekv"]
 radius = 0.569079
@@ -74,7 +76,9 @@ text = "HP: "
 layout_mode = 2
 size_flags_horizontal = 3
 max_value = 3.0
-value = 1.0
+value = 3.0
+texture_under = ExtResource("5_qoagc")
+texture_progress = ExtResource("6_gtyxq")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
