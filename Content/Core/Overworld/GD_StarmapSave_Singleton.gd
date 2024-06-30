@@ -273,5 +273,18 @@ func gen_node(type):
 func get_resource_from_directory(directory, filter=""):
 	var resource_dir = DirAccess.open(directory)
 	var resources = resource_dir.get_files()
-	resources = Array(resources).filter(func(filename): return !filename.contains(".import"))
+	print_debug(resources)
+	resources = Array(resources).map(
+		func(filename):
+			var rsx = filename
+			if filename.ends_with(".import"):
+				rsx = filename.replace(".import", "") 
+			return rsx)
+	resources = resources.map(
+		func(resource): 
+			var rsx = resource
+			if resource.ends_with(".remap"):
+				rsx = resource.replace(".remap", "")
+			return rsx)
+	print_debug(resources)
 	return directory+resources[rng.randi_range(0, len(resources)-1)]

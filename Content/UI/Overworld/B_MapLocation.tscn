@@ -1,6 +1,5 @@
 [gd_scene load_steps=7 format=3 uid="uid://duclwubyc7yvl"]
 
-[ext_resource type="Texture2D" uid="uid://bv70mlux6j2tc" path="res://Content/Art/Environments/OverworldButtons/T_PlaneButton_1.png" id="1_33nf3"]
 [ext_resource type="Script" path="res://Content/UI/Overworld/GD_MapLocation.gd" id="1_ls4oy"]
 [ext_resource type="Shader" path="res://Content/UI/Overworld/M_PlanetButton.gdshader" id="1_y5cl2"]
 [ext_resource type="Gradient" uid="uid://bsh5jlaubyf8f" path="res://Content/Art/Environments/EnvironmentThemes/G_EnvironmentTheme_1.tres" id="2_xv57i"]
@@ -13,6 +12,8 @@ resource_local_to_scene = true
 shader = ExtResource("1_y5cl2")
 shader_parameter/gradient = SubResource("GradientTexture1D_3168x")
 
+[sub_resource type="ImageTexture" id="ImageTexture_nf50p"]
+
 [node name="MapLocation" type="TextureButton"]
 modulate = Color(0.901961, 0.901961, 0.901961, 1)
 material = SubResource("ShaderMaterial_qmk7q")
@@ -20,7 +21,7 @@ offset_right = 512.0
 offset_bottom = 512.0
 scale = Vector2(0.15, 0.15)
 size_flags_horizontal = 3
-texture_normal = ExtResource("1_33nf3")
+texture_normal = SubResource("ImageTexture_nf50p")
 script = ExtResource("1_ls4oy")
 
 [connection signal="focus_entered" from="." to="." method="_on_hover"]
