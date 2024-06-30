@@ -3,6 +3,7 @@ class_name MazeGenerator
 
 @export var load_progress:ProgressBar
 @export var load_screen:Control
+var maze_theme
 var done_nodes = 0
 var total_nodes
 
@@ -65,6 +66,7 @@ var z
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	maze_theme = load(Starmaps.current_starmap["nodes"][Starmaps.current_node]["planet_theme"])
 	
 	# Generate Maze Dimensions and Starting Point
 	maze_dimensions = Vector3(Starmaps.rng.randi_range(maze_cell_range.x, maze_cell_range.y),
@@ -113,6 +115,9 @@ func build_cell_wall(cell, cell_position):
 	var cell_y = (cell_position.y * wall_size) + offset
 	var cell_z = (cell_position.z * wall_size) + offset
 	
+	var sample_point = clamp( (goal_cell - cell_position).length()/8.0, 0, 1)
+	var wall_color = maze_theme.sample(sample_point)
+	
 	var n_x
 	var n_y
 	var n_z
@@ -121,7 +126,7 @@ func build_cell_wall(cell, cell_position):
 	
 	if cell & WALL_ABOVE == 0:
 		n_wall = wall.instantiate()
-		n_wall.color = Color(0, .5, 0)
+		n_wall.color = wall_color + Color(0, .1, 0)
 		n_x = cell_x
 		n_y = cell_y + wall_size/2
 		n_z = cell_z
@@ -131,7 +136,7 @@ func build_cell_wall(cell, cell_position):
 		add_child(n_wall)
 	if cell & WALL_BELOW == 0:
 		n_wall = wall.instantiate()
-		n_wall.color = Color(0, .5, 0)
+		n_wall.color = wall_color + Color(0, .1, 0)
 		n_x = cell_x
 		n_y = cell_y - wall_size/2
 		n_z = cell_z
@@ -141,7 +146,7 @@ func build_cell_wall(cell, cell_position):
 		add_child(n_wall)
 	if cell & WALL_LEFT == 0:
 		n_wall = wall.instantiate()
-		n_wall.color = Color(.5, 0, 0)
+		n_wall.color = wall_color + Color(.1, 0, 0)
 		n_x = cell_x + wall_size/2
 		n_y = cell_y
 		n_z = cell_z
@@ -151,7 +156,7 @@ func build_cell_wall(cell, cell_position):
 		add_child(n_wall)
 	if cell & WALL_RIGHT == 0:
 		n_wall = wall.instantiate()
-		n_wall.color = Color(.5, 0, 0)
+		n_wall.color = wall_color + Color(.1, 0, 0)
 		n_x = cell_x - wall_size/2
 		n_y = cell_y
 		n_z = cell_z
@@ -161,7 +166,7 @@ func build_cell_wall(cell, cell_position):
 		add_child(n_wall)
 	if cell & WALL_FRONT == 0:
 		n_wall = wall.instantiate()
-		n_wall.color = Color(0, 0, .5)
+		n_wall.color = wall_color + Color(0, 0, .1)
 		n_x = cell_x
 		n_y = cell_y
 		n_z = cell_z + wall_size/2
@@ -170,7 +175,7 @@ func build_cell_wall(cell, cell_position):
 		add_child(n_wall)
 	if cell & WALL_BACK == 0:
 		n_wall = wall.instantiate()
-		n_wall.color = Color(0, 0, .5)
+		n_wall.color = wall_color + Color(0, 0, .1)
 		n_x = cell_x
 		n_y = cell_y
 		n_z = cell_z - wall_size/2
