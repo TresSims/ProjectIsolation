@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://soi4m4qbe6ve"]
 
 [ext_resource type="Script" path="res://Content/Core/AddOns/IntBoost/GD_IntBoost.gd" id="1_dn712"]
-[ext_resource type="Curve3D" uid="uid://cxs1tbwlytiej" path="res://Content/Core/Characters/Starretri/C_HappyAnim.tres" id="2_d8gkj"]
+[ext_resource type="Curve3D" path="res://Content/Core/Characters/Starretri/C_HappyAnim.tres" id="2_d8gkj"]
 [ext_resource type="Texture2D" uid="uid://byheufyp81pkt" path="res://Content/Art/PowerUps/AddOns/T_IntUp.png" id="3_keydd"]
 [ext_resource type="AudioStream" uid="uid://cyafhqljpecb4" path="res://Content/Art/sfx/power_up.wav" id="4_ij5u7"]
 
