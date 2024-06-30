@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bhsrq2mkr4f1h"]
 
 [ext_resource type="Script" path="res://Content/UI/Scripts/GD_CharacterButton.gd" id="1_km0w0"]
-[ext_resource type="Texture2D" uid="uid://bq6hsaisyuatc" path="res://Content/Art/Characters/Starretri/T_StarretriPortrait.jpg" id="1_kulls"]
+[ext_resource type="Texture2D" uid="uid://bq6hsaisyuatc" path="res://Content/Art/Characters/Starrietrie/T_StarretriPortrait.jpg" id="1_kulls"]
 [ext_resource type="Theme" uid="uid://6xwjf0v4e4yy" path="res://Content/UI/Scripts/IsolationTheme.theme" id="2_d2tcg"]
 [ext_resource type="Texture2D" uid="uid://2vuqloi34loi" path="res://Content/UI/CharacterSelect/T_Locked.png" id="2_enued"]
 [ext_resource type="Texture2D" uid="uid://bkuq2ed1nw83s" path="res://Content/Art/PowerUps/AddOns/T_Dash.png" id="5_2a57j"]

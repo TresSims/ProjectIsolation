@@ -12,7 +12,7 @@ var cooldown_time = 1.5
 var work_curve:Curve3D
 
 @onready var work_timer = $WorkTimer
-@onready var char_body = $MeshInstance3D
+var char_body
 @export var attack_curve:Curve3D
 @export var hit_scene:PackedScene
 var attack_time = .3
@@ -46,6 +46,9 @@ func _ready():
 	update_item()
 	
 	hp_bar.value = Starmaps.current_starmap["character"]["hp"]
+	
+	char_body = load(Starmaps.current_starmap["character"]["body"]).instantiate()
+	add_child(char_body)
 
 func update_item():
 	print_debug("We're updating our item!")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://coywj5kl2qfg3"]
+[gd_scene load_steps=11 format=3 uid="uid://coywj5kl2qfg3"]
 
 [ext_resource type="Script" path="res://Content/Core/Characters/Starretri/GD_Stary.gd" id="1_vihag"]
 [ext_resource type="Curve3D" uid="uid://b5eh1orifudtg" path="res://Content/Core/Characters/Starretri/C_AttackAnim.tres" id="2_cc6cp"]
@@ -14,13 +14,6 @@
 radius = 0.569079
 height = 1.13816
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gbp2g"]
-emission_enabled = true
-emission = Color(1, 0, 1, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_rkbws"]
-material = SubResource("StandardMaterial3D_gbp2g")
-
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 5
 collision_mask = 5
@@ -31,9 +24,6 @@ none_tex = ExtResource("4_u27hj")
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_tgekv")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("SphereMesh_rkbws")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)

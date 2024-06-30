@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bfsuk1jiwy1a2"
-path="res://.godot/imported/T_StarrlaPortrait.jpg-725c9b525f6aca797ddd120e2ba2871e.ctex"
+path="res://.godot/imported/T_ShiistarPortrait.jpg-73e764687a3d255278413ea8961895a0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Content/Art/Characters/Starretri/T_StarrlaPortrait.jpg"
-dest_files=["res://.godot/imported/T_StarrlaPortrait.jpg-725c9b525f6aca797ddd120e2ba2871e.ctex"]
+source_file="res://Content/Art/Characters/Shiistar/T_ShiistarPortrait.jpg"
+dest_files=["res://.godot/imported/T_ShiistarPortrait.jpg-73e764687a3d255278413ea8961895a0.ctex"]
 
 [params]
 

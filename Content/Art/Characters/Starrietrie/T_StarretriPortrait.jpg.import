@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfh15bx2lawip"
-path="res://.godot/imported/T_StarloPortrait.jpg-bc08d85eec611ba7147eb5e644394a8f.ctex"
+uid="uid://bq6hsaisyuatc"
+path="res://.godot/imported/T_StarretriPortrait.jpg-1cd95106306ce6ae13f54b9277949b01.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Content/Art/Characters/Starretri/T_StarloPortrait.jpg"
-dest_files=["res://.godot/imported/T_StarloPortrait.jpg-bc08d85eec611ba7147eb5e644394a8f.ctex"]
+source_file="res://Content/Art/Characters/Starrietrie/T_StarretriPortrait.jpg"
+dest_files=["res://.godot/imported/T_StarretriPortrait.jpg-1cd95106306ce6ae13f54b9277949b01.ctex"]
 
 [params]
 
