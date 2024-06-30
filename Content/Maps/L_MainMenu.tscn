@@ -178,6 +178,10 @@ transform = Transform3D(0.154904, 0, 0.196227, 0, 0.25, 0, -0.196227, 0, 0.15490
 [node name="Starrietrie" parent="." instance=ExtResource("13_vliyw")]
 transform = Transform3D(0.422645, 0, -0.267154, 0, 0.5, 0, 0.267154, 0, 0.422645, 1.70739, 0.772213, -0.117871)
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.926607, 1.38075e-08, 0.37603, -0.211778, 0.826324, 0.52186, -0.310723, -0.563194, 0.765678, 0, 0, 0)
+light_color = Color(0.946677, 0.785038, 0.921657, 1)
+
 [connection signal="pressed" from="Camera3D/Control/MarginContainer/VBoxContainer/NewGame" to="Camera3D/Control/MarginContainer/VBoxContainer/NewGame" method="_load_scene"]
 [connection signal="pressed" from="Camera3D/Control/MarginContainer/VBoxContainer/Continue" to="Camera3D/Control/MarginContainer/VBoxContainer/Continue" method="_load_scene"]
 [connection signal="toggled" from="Camera3D/Control/MarginContainer/VBoxContainer/Credit" to="Camera3D/Control/MarginContainer/VBoxContainer/Credit" method="_visibility"]
