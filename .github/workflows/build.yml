@@ -27,8 +27,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref }}
-          release_name: Mourning Light ${{ github.ref }}
-          body_path: './ReleaseNotes/${{ github.ref_name }}.md'
+          release_name: ProjectIsolation ${{ github.ref }}
+          body_path: './ReleaseNotes/${{ github.ref}}.md'
           draft: false
           prerelease: true
       - name: Upload Release - Windows
@@ -38,7 +38,7 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: /home/runner/.local/share/godot/archives/windows.zip
-          asset_name: 'MourningLight ${{ github.ref_name }} - windows.zip'
+          asset_name: 'ProjectIsolation ${{ github.ref}} - windows.zip'
           asset_content_type: application/zip
       - name: Upload Release - Linux
         uses: actions/upload-release-asset@v1
@@ -47,7 +47,7 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: /home/runner/.local/share/godot/archives/linux.zip
-          asset_name: 'MourningLight ${{ github.ref_name }} - linux.zip'
+          asset_name: 'ProjectIsolation ${{ github.ref}} - linux.zip'
           asset_content_type: application/zip
       - name: Upload Release - MacOS
         uses: actions/upload-release-asset@v1
@@ -56,5 +56,5 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: /home/runner/.local/share/godot/archives/macOS.zip
-          asset_name: 'MourningLight ${{ github.ref_name }} - macOS.zip'
+          asset_name: 'ProjectIsolation ${{ github.ref}} - macOS.zip'
           asset_content_type: application/zip
