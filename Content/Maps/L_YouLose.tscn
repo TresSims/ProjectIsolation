@@ -1,0 +1,98 @@
+[gd_scene load_steps=9 format=3 uid="uid://22e3tboufmyc"]
+
+[ext_resource type="Environment" uid="uid://cu3l378x4crcl" path="res://Content/Art/Environments/E_Space.tres" id="1_taw5c"]
+[ext_resource type="Script" path="res://Content/UI/Scripts/GD_NavButton.gd" id="2_p8xrj"]
+[ext_resource type="PackedScene" uid="uid://bypxny1o3ylmj" path="res://Content/Maps/L_MainMenu.tscn" id="3_wlr5o"]
+[ext_resource type="Script" path="res://Content/UI/Scripts/GD_QuitButton.gd" id="4_622pq"]
+[ext_resource type="Texture2D" uid="uid://l6ro42ljn2oj" path="res://Content/UI/Scripts/T_TitleCard.png" id="5_a37o0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ywyl"]
+albedo_color = Color(0.136826, 0.136826, 0.136826, 1)
+metallic_specular = 1.0
+roughness = 0.0
+backlight_enabled = true
+backlight = Color(0.196078, 0.196078, 0.972549, 1)
+refraction_scale = 0.71
+
+[sub_resource type="SphereMesh" id="SphereMesh_xho5r"]
+material = SubResource("StandardMaterial3D_2ywyl")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_04xui"]
+emission_enabled = true
+emission = Color(1, 0, 1, 1)
+
+[node name="Main Menu" type="WorldEnvironment"]
+environment = ExtResource("1_taw5c")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.377)
+
+[node name="Control" type="Control" parent="Camera3D"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Camera3D/Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -243.0
+offset_right = 244.0
+grow_vertical = 0
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Camera3D/Control/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+alignment = 2
+
+[node name="Button" type="Button" parent="Camera3D/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Restart"
+script = ExtResource("2_p8xrj")
+NextScene = ExtResource("3_wlr5o")
+
+[node name="Button2" type="Button" parent="Camera3D/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+script = ExtResource("4_622pq")
+
+[node name="PanelContainer" type="PanelContainer" parent="Camera3D/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -225.0
+offset_right = 225.0
+offset_bottom = 300.0
+grow_horizontal = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Camera3D/Control/PanelContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Camera3D/Control/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("5_a37o0")
+
+[node name="Label" type="Label" parent="Camera3D/Control/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "You Lose!!!"
+horizontal_alignment = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.455675, 0, 0, 0, 0.455675, 0, 0, 0, 0.455675, -0.703065, -0.186477, -1.24221)
+mesh = SubResource("SphereMesh_xho5r")
+skeleton = NodePath("../Camera3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_04xui")
+
+[connection signal="pressed" from="Camera3D/Control/MarginContainer/VBoxContainer/Button" to="Camera3D/Control/MarginContainer/VBoxContainer/Button" method="_load_scene"]
+[connection signal="pressed" from="Camera3D/Control/MarginContainer/VBoxContainer/Button2" to="Camera3D/Control/MarginContainer/VBoxContainer/Button2" method="_quit_game"]

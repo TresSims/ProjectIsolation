@@ -270,20 +270,22 @@ func _process(delta):
 			passBool = 0
 		
 	elif not done:
+		var player_spawn = Vector3(
+			Starmaps.rng.randi_range(0, maze_dimensions.x - 1 ),
+			Starmaps.rng.randi_range(0, maze_dimensions.y - 1 ),
+			Starmaps.rng.randi_range(0, maze_dimensions.z - 1 )
+		)
 		for x in range(0, len(maze_graph)):
 			for y in range(0, len(maze_graph[x])):
 				for z in range(0, len(maze_graph[x][y])):
 					var this_cell = Vector3(x, y, z)
 					build_cell_wall(maze_graph[x][y][z], this_cell)
-					if Starmaps.rng.randi_range(0, 10) > 6:
-						add_branch_to_cell(spawnables[Starmaps.rng.randi_range(0, len(spawnables)-1)], this_cell)
+					if this_cell != goal_cell and this_cell != player_spawn:
+						if Starmaps.rng.randi_range(0, 10) > 6:
+							add_branch_to_cell(spawnables[Starmaps.rng.randi_range(0, len(spawnables)-1)], this_cell)
 		
 		add_branch_to_cell(goal, goal_cell)
-		add_branch_to_cell(player, Vector3(
-			Starmaps.rng.randi_range(0, maze_dimensions.x - 1 ),
-			Starmaps.rng.randi_range(0, maze_dimensions.y - 1 ),
-			Starmaps.rng.randi_range(0, maze_dimensions.z - 1 )
-		))
+		add_branch_to_cell(player, player_spawn)
 		done = true
 		load_screen.visible = false
 

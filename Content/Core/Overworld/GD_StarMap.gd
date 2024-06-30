@@ -15,7 +15,6 @@ func read_starmap():
 		Starmaps.load_starmap()
 	
 	var map = Starmaps.current_starmap
-	print_debug(map["character"])
 	
 	for n in lines.get_children():
 		lines.remove_child(n)

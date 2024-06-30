@@ -14,6 +14,7 @@ var current_node = -1
 
 var starmap_scene = preload("res://Content/Maps/L_Overworld.tscn")
 var you_win = preload("res://Content/Maps/L_YouWin.tscn")
+var you_lose = preload("res://Content/Maps/L_YouLose.tscn")
 
 var starmap_example = {
 	"character": {},
@@ -218,6 +219,12 @@ func navigate_to_win():
 	current_starmap = {}
 	unlock_next()
 	get_tree().change_scene_to_packed(you_win)
+
+func navigate_to_lose():
+	current_starmap = {}
+	clear_map()
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	get_tree().change_scene_to_packed(you_lose)
 
 func unlock_next():
 	for c in CharacterInfo.get_chars()["characters"]:

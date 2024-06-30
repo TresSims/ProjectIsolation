@@ -6,3 +6,6 @@ func expire():
 func on_hit(area:Node3D):
 	if area.get_parent().has_method("take_damage"):
 		area.get_parent().take_damage()
+	
+	if area.has_method("take_damage"):
+		area.take_damage()

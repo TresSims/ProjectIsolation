@@ -85,7 +85,7 @@ texture = ExtResource("2_3xxdw")
 
 [node name="Label" type="Label" parent="Camera3D/Control/PanelContainer/VBoxContainer"]
 layout_mode = 2
-text = "You Win!!! You Saved Starretri!! We Love you!!"
+text = "You Win!!! You Found a new Friend!! We Love you!!"
 horizontal_alignment = 1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

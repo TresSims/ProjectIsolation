@@ -28,6 +28,7 @@ var attack_mag = 1
 @export var none_tex:Texture
 
 @onready var point_label = $Points/MarginContainer/HBoxContainer/PointValue
+@onready var hp_bar = $Control/MarginContainer/VBoxContainer/HBoxContainer4/HPBar
 
 var stall
 @onready var stall_dialogue = $StallDialogue
@@ -44,7 +45,7 @@ func _ready():
 	point_label.text = "%d" % Starmaps.current_starmap["character"]["exp"]
 	update_item()
 	
-	
+	hp_bar.value = Starmaps.current_starmap["character"]["hp"]
 
 func update_item():
 	print_debug("We're updating our item!")
@@ -163,3 +164,9 @@ func use_item():
 func get_points(points):
 	Starmaps.current_starmap["character"]["exp"] += points
 	point_label.text = "%d" % Starmaps.current_starmap["character"]["exp"]
+
+func hit_player():
+	Starmaps.current_starmap["character"]["hp"] -= 1
+	hp_bar.value = Starmaps.current_starmap["character"]["hp"]
+	if Starmaps.current_starmap["character"]["hp"] <= 0:
+		Starmaps.navigate_to_lose()

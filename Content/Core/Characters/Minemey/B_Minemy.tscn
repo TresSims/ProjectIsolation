@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dslmvmipp6qjm"]
+
+[ext_resource type="Script" path="res://Content/Core/Characters/Minemey/GD_Minemy.gd" id="1_gw20a"]
+[ext_resource type="PackedScene" uid="uid://bhy547dt2vlhg" path="res://Content/Art/Characters/Darksol/Darksol.glb" id="1_qeaur"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_pik0r"]
+radius = 0.635185
+
+[node name="Minemy" type="CharacterBody3D"]
+collision_layer = 3
+script = ExtResource("1_gw20a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_pik0r")
+
+[node name="Darksol" parent="." instance=ExtResource("1_qeaur")]
+transform = Transform3D(-0.25, 0, -2.18557e-08, 0, 0.25, 0, 2.18557e-08, 0, -0.25, 0, 0, 0)
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, -15)
+collision_mask = 4
