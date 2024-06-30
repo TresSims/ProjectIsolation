@@ -135,7 +135,7 @@ func yes():
 
 func set_stall(body):
 	stall = body
-	if stall:
+	if stall and not stall.sold_out:
 		stall_dialogue.visible = true
 		item_name.text = stall.item.addon_name
 		item_cost.text = "$%d" % stall.cost

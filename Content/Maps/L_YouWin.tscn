@@ -7,21 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://bypxny1o3ylmj" path="res://Content/Maps/L_MainMenu.tscn" id="3_gluyb"]
 [ext_resource type="Script" path="res://Content/UI/Scripts/GD_QuitButton.gd" id="4_wmdxq"]
 [ext_resource type="Script" path="res://Content/Maps/RichTextLabel.gd" id="7_6crrk"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ywyl"]
-albedo_color = Color(0.136826, 0.136826, 0.136826, 1)
-metallic_specular = 1.0
-roughness = 0.0
-backlight_enabled = true
-backlight = Color(0.196078, 0.196078, 0.972549, 1)
-refraction_scale = 0.71
-
-[sub_resource type="SphereMesh" id="SphereMesh_xho5r"]
-material = SubResource("StandardMaterial3D_2ywyl")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_04xui"]
-emission_enabled = true
-emission = Color(1, 0, 1, 1)
+[ext_resource type="PackedScene" uid="uid://ctklaxubdupki" path="res://Content/Art/Characters/Shiistar/Shiistar.glb" id="8_h5n7t"]
+[ext_resource type="PackedScene" uid="uid://dwa3n4nphsjom" path="res://Content/Art/Characters/Starglo/Starglo.glb" id="9_fueqp"]
+[ext_resource type="PackedScene" uid="uid://rgx7y6kx8lq3" path="res://Content/Art/Characters/Starrietrie/Starrietrie.glb" id="10_yfqgj"]
 
 [node name="Main Menu" type="WorldEnvironment"]
 environment = ExtResource("1_31kip")
@@ -169,11 +157,14 @@ Hydro74 (Joshua Smith) Terminal http://legacyofdefeat.squarespace.com/legacycoll
 Riciery Leal VCR OSD Mono https://www.dafont.com/vcr-osd-mono.font"
 script = ExtResource("7_6crrk")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.455675, 0, 0, 0, 0.455675, 0, 0, 0, 0.455675, -0.703065, -0.186477, -1.24221)
-mesh = SubResource("SphereMesh_xho5r")
-skeleton = NodePath("../Camera3D")
-surface_material_override/0 = SubResource("StandardMaterial3D_04xui")
+[node name="Shiistar" parent="." instance=ExtResource("8_h5n7t")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 1.48824, -0.256746, -2)
+
+[node name="Starglo" parent="." instance=ExtResource("9_fueqp")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -2, -1.25675, -1)
+
+[node name="Starrietrie" parent="." instance=ExtResource("10_yfqgj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.26916, -3)
 
 [connection signal="pressed" from="Camera3D/Control/MarginContainer/VBoxContainer/Button" to="Camera3D/Control/MarginContainer/VBoxContainer/Button" method="_load_scene"]
 [connection signal="pressed" from="Camera3D/Control/MarginContainer/VBoxContainer/Button2" to="Camera3D/Control/MarginContainer/VBoxContainer/Button2" method="_quit_game"]
