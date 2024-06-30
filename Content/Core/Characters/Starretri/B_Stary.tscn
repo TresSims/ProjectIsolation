@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://coywj5kl2qfg3"]
+[gd_scene load_steps=10 format=3 uid="uid://coywj5kl2qfg3"]
 
 [ext_resource type="Script" path="res://Content/Core/Characters/Starretri/GD_Stary.gd" id="1_vihag"]
 [ext_resource type="Curve3D" uid="uid://b5eh1orifudtg" path="res://Content/Core/Characters/Starretri/C_AttackAnim.tres" id="2_cc6cp"]
 [ext_resource type="PackedScene" uid="uid://dbn8htlc45n7c" path="res://Content/Core/Characters/Starretri/B_AttackBox.tscn" id="3_jvy1y"]
 [ext_resource type="Texture2D" uid="uid://de7srteeif7no" path="res://Content/Art/PowerUps/AddOns/T_None.png" id="4_u27hj"]
 [ext_resource type="Texture2D" uid="uid://cnt7pyva75x7f" path="res://Content/Art/PowerUps/AddOns/T_Points.png" id="5_g24jl"]
+[ext_resource type="AudioStream" uid="uid://65sjgm6eei3r" path="res://Content/Art/Music/Isolation.wav" id="6_ejld6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tgekv"]
 radius = 0.569079
@@ -207,5 +208,12 @@ text = "0
 [node name="Label" type="Label" parent="Points/MarginContainer/HBoxContainer"]
 layout_mode = 2
 text = "Points"
+
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ejld6")
+volume_db = -25.0
+autoplay = true
 
 [connection signal="timeout" from="WorkTimer" to="." method="end_working"]
