@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ocjchu0lxdcc"]
+[gd_scene load_steps=12 format=3 uid="uid://ocjchu0lxdcc"]
 
 [ext_resource type="Environment" uid="uid://cu3l378x4crcl" path="res://Content/Art/Environments/E_Space.tres" id="1_mo72u"]
 [ext_resource type="PackedScene" uid="uid://coywj5kl2qfg3" path="res://Content/Core/Characters/Starretri/B_Stary.tscn" id="2_wss3u"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bhxowuwtd4fvm" path="res://Content/Core/EnvironmentComponents/Portal/B_GoalPortal.tscn" id="5_oblnl"]
 [ext_resource type="PackedScene" uid="uid://debfgvbiwdu7n" path="res://Content/Core/EnvironmentComponents/Wall/B_Wall_Border.tscn" id="5_u6swj"]
 [ext_resource type="Script" path="res://Content/Core/Mazes/GD_MazeGen.gd" id="6_8fofj"]
+[ext_resource type="Theme" uid="uid://6xwjf0v4e4yy" path="res://Content/UI/Scripts/IsolationTheme.theme" id="10_huh2a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b2rfd"]
 
@@ -59,10 +60,12 @@ alignment = 1
 
 [node name="Label" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("10_huh2a")
 text = "Loading..."
 
 [node name="LoadProgress" type="ProgressBar" parent="Control/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("10_huh2a")
 max_value = 1.0
 step = 0.1
 
