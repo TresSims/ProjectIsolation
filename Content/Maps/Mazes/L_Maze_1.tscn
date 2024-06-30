@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ocjchu0lxdcc"]
+[gd_scene load_steps=13 format=3 uid="uid://ocjchu0lxdcc"]
 
 [ext_resource type="Environment" uid="uid://cu3l378x4crcl" path="res://Content/Art/Environments/E_Space.tres" id="1_mo72u"]
 [ext_resource type="PackedScene" uid="uid://coywj5kl2qfg3" path="res://Content/Core/Characters/Starretri/B_Stary.tscn" id="2_wss3u"]
@@ -9,13 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://bhxowuwtd4fvm" path="res://Content/Core/EnvironmentComponents/Portal/B_GoalPortal.tscn" id="5_oblnl"]
 [ext_resource type="PackedScene" uid="uid://debfgvbiwdu7n" path="res://Content/Core/EnvironmentComponents/Wall/B_Wall_Border.tscn" id="5_u6swj"]
 [ext_resource type="Script" path="res://Content/Core/Mazes/GD_MazeGen.gd" id="6_8fofj"]
+[ext_resource type="Texture2D" uid="uid://dpe46ncjopw0p" path="res://Content/UI/Overworld/T_OverworldBg.png" id="10_df43f"]
 [ext_resource type="Theme" uid="uid://6xwjf0v4e4yy" path="res://Content/UI/Scripts/IsolationTheme.theme" id="10_huh2a"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b2rfd"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k5eb4"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l1pkq"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nqvls"]
+texture = ExtResource("10_df43f")
 
 [node name="WorldEnvironment" type="WorldEnvironment"]
 environment = ExtResource("1_mo72u")
@@ -49,7 +47,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_b2rfd")
+theme_override_styles/panel = SubResource("StyleBoxTexture_nqvls")
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer"]
 layout_mode = 2
@@ -72,8 +70,6 @@ text = "Loading..."
 layout_mode = 2
 theme = ExtResource("10_huh2a")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_styles/background = SubResource("StyleBoxFlat_k5eb4")
-theme_override_styles/fill = SubResource("StyleBoxFlat_l1pkq")
 max_value = 1.0
 step = 0.1
 

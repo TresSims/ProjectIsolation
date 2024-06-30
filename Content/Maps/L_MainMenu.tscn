@@ -190,10 +190,8 @@ mesh = SubResource("SphereMesh_xho5r")
 skeleton = NodePath("../Camera3D")
 surface_material_override/0 = SubResource("StandardMaterial3D_04xui")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.32782, 0, 0, 0, 1.32782, 0, 0, 0, 1.32782, -1.44075, -0.773096, 0.424421)
-mesh = SubResource("SphereMesh_xho5r")
-skeleton = NodePath("../MeshInstance3D")
+[node name="Mball_020" parent="." instance=ExtResource("10_nbg75")]
+transform = Transform3D(4.73701, 0, 3.73637, 0, 6.03322, 0, -3.73637, 0, 4.73701, -1.44075, -0.773096, 0.424421)
 
 [connection signal="pressed" from="Camera3D/Control/MarginContainer/VBoxContainer/NewGame" to="Camera3D/Control/MarginContainer/VBoxContainer/NewGame" method="_load_scene"]
 [connection signal="pressed" from="Camera3D/Control/MarginContainer/VBoxContainer/Continue" to="Camera3D/Control/MarginContainer/VBoxContainer/Continue" method="_load_scene"]
