@@ -49,7 +49,7 @@ func _ready():
 
 func update_item():
 	print_debug("We're updating our item!")
-	if Starmaps.current_starmap["character"].has("item"):
+	if Starmaps.current_starmap["character"].has("item") and Starmaps.current_starmap["character"]["item"] != "":
 		var the_item = load(Starmaps.current_starmap["character"]["item"]).instantiate()
 		my_item_name.text = "[CTRL] %s" % the_item.addon_name
 		my_item_texture.texture = the_item.texture
