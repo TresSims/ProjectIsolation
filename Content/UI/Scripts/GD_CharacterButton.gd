@@ -35,6 +35,8 @@ func setup(character_info):
 	ability_icon.texture = ability.texture
 	ability_name.text = ability.addon_name
 	
+	profile_image.texture = load(char_info["portrait"])
+	
 	var locked = char_info["locked"]
 	locked_image.visible = locked
 	select_button.disabled = locked
