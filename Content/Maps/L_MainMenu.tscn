@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bypxny1o3ylmj"]
+[gd_scene load_steps=14 format=3 uid="uid://bypxny1o3ylmj"]
 
 [ext_resource type="Environment" uid="uid://cu3l378x4crcl" path="res://Content/Art/Environments/E_Space.tres" id="1_7oloa"]
 [ext_resource type="Script" path="res://Content/Maps/GD_MainMenu.gd" id="2_2dg7j"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Content/Maps/GD_Continue.gd" id="5_8qc73"]
 [ext_resource type="PackedScene" uid="uid://c0ix7id7ixugo" path="res://Content/Maps/L_Overworld.tscn" id="6_a1a87"]
 [ext_resource type="Texture2D" uid="uid://l6ro42ljn2oj" path="res://Content/UI/Scripts/T_TitleCard.png" id="8_isf66"]
+[ext_resource type="PackedScene" uid="uid://2ayilx2binn1" path="res://Content/Core/Characters/Minemey/mball_020.tscn" id="10_nbg75"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ywyl"]
 albedo_color = Color(0.136826, 0.136826, 0.136826, 1)
@@ -101,10 +102,8 @@ mesh = SubResource("SphereMesh_xho5r")
 skeleton = NodePath("../Camera3D")
 surface_material_override/0 = SubResource("StandardMaterial3D_04xui")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.32782, 0, 0, 0, 1.32782, 0, 0, 0, 1.32782, -1.44075, -0.773096, 0.424421)
-mesh = SubResource("SphereMesh_xho5r")
-skeleton = NodePath("../MeshInstance3D")
+[node name="Mball_020" parent="." instance=ExtResource("10_nbg75")]
+transform = Transform3D(4.73701, 0, 3.73637, 0, 6.03322, 0, -3.73637, 0, 4.73701, -1.44075, -0.773096, 0.424421)
 
 [connection signal="pressed" from="Camera3D/Control/MarginContainer/VBoxContainer/NewGame" to="Camera3D/Control/MarginContainer/VBoxContainer/NewGame" method="_load_scene"]
 [connection signal="pressed" from="Camera3D/Control/MarginContainer/VBoxContainer/Continue" to="Camera3D/Control/MarginContainer/VBoxContainer/Continue" method="_load_scene"]

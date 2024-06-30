@@ -71,7 +71,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_sd8yw"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_86esj"]
 resource_local_to_scene = true
 resource_name = "Darksol_Mesh_001"
 _surfaces = [{
@@ -145,7 +145,7 @@ shape = SubResource("SphereShape3D_pik0r")
 
 [node name="Darksol" parent="." instance=ExtResource("5_7uv7j")]
 transform = Transform3D(-4.5, 0, -3.93403e-07, 0, 4.5, 0, 3.93403e-07, 0, -4.5, 0, 0, 0)
-mesh = SubResource("ArrayMesh_sd8yw")
+mesh = SubResource("ArrayMesh_86esj")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 target_position = Vector3(0, 0, -15)

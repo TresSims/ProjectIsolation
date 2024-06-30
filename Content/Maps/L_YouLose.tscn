@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://drlxaqwi2rvm1"]
+[gd_scene load_steps=8 format=3 uid="uid://drlxaqwi2rvm1"]
 
 [ext_resource type="Environment" uid="uid://cu3l378x4crcl" path="res://Content/Art/Environments/E_Space.tres" id="1_taw5c"]
 [ext_resource type="Theme" uid="uid://6xwjf0v4e4yy" path="res://Content/UI/Scripts/IsolationTheme.theme" id="2_chyia"]
@@ -6,21 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bypxny1o3ylmj" path="res://Content/Maps/L_MainMenu.tscn" id="3_wlr5o"]
 [ext_resource type="Script" path="res://Content/UI/Scripts/GD_QuitButton.gd" id="4_622pq"]
 [ext_resource type="Texture2D" uid="uid://l6ro42ljn2oj" path="res://Content/UI/Scripts/T_TitleCard.png" id="5_a37o0"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ywyl"]
-albedo_color = Color(0.136826, 0.136826, 0.136826, 1)
-metallic_specular = 1.0
-roughness = 0.0
-backlight_enabled = true
-backlight = Color(0.196078, 0.196078, 0.972549, 1)
-refraction_scale = 0.71
-
-[sub_resource type="SphereMesh" id="SphereMesh_xho5r"]
-material = SubResource("StandardMaterial3D_2ywyl")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_04xui"]
-emission_enabled = true
-emission = Color(1, 0, 1, 1)
+[ext_resource type="PackedScene" uid="uid://2ayilx2binn1" path="res://Content/Core/Characters/Minemey/mball_020.tscn" id="7_3bxua"]
 
 [node name="Main Menu" type="WorldEnvironment"]
 environment = ExtResource("1_taw5c")
@@ -91,11 +77,12 @@ layout_mode = 2
 text = "You Lose!!!"
 horizontal_alignment = 1
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.455675, 0, 0, 0, 0.455675, 0, 0, 0, 0.455675, -0.703065, -0.186477, -1.24221)
-mesh = SubResource("SphereMesh_xho5r")
-skeleton = NodePath("../Camera3D")
-surface_material_override/0 = SubResource("StandardMaterial3D_04xui")
+[node name="Mball_020" parent="." instance=ExtResource("7_3bxua")]
+transform = Transform3D(10.944, 0, 0, 0, 10.944, 0, 0, 0, 10.944, 0, -1.2538, -3.74929)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.999997, -0.00178933, 0.00157936, 0.00216481, 0.40142, -0.915892, 0.00100485, 0.915892, 0.401423, -0.00482297, -3.23938, 3.11254)
+light_color = Color(0.631854, 0.484266, 0.933517, 1)
 
 [connection signal="pressed" from="Camera3D/Control/MarginContainer/VBoxContainer/Button" to="Camera3D/Control/MarginContainer/VBoxContainer/Button" method="_load_scene"]
 [connection signal="pressed" from="Camera3D/Control/MarginContainer/VBoxContainer/Button2" to="Camera3D/Control/MarginContainer/VBoxContainer/Button2" method="_quit_game"]
