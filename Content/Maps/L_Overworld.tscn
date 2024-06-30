@@ -129,6 +129,7 @@ horizontal_alignment = 1
 [node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/StarMap/MazeBox/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("6_gmlsk")
 text = "Help Starretri find friends to fight off the Isolation!"
 
 [node name="Button" type="Button" parent="MarginContainer/StarMap/MazeBox/MarginContainer/VBoxContainer"]
