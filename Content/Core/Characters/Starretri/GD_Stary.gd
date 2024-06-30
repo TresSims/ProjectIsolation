@@ -154,7 +154,7 @@ func use_ability():
 	cooldown_time = n_ability_scene.cooldown_time
 
 func use_item():
-	if Starmaps.current_starmap["character"].has("item"):
+	if Starmaps.current_starmap["character"].has("item") and Starmaps.current_starmap["character"]["item"] != "":
 		var n_ability_scene = load(Starmaps.current_starmap["character"]["item"]).instantiate()
 		add_child(n_ability_scene)
 		n_ability_scene._use()
