@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bprqoy5ec2u6"]
+[gd_scene load_steps=10 format=3 uid="uid://bprqoy5ec2u6"]
 
 [ext_resource type="Environment" uid="uid://cu3l378x4crcl" path="res://Content/Art/Environments/E_Space.tres" id="1_31kip"]
 [ext_resource type="Texture2D" uid="uid://l6ro42ljn2oj" path="res://Content/UI/Scripts/T_TitleCard.png" id="2_3xxdw"]
+[ext_resource type="Theme" uid="uid://6xwjf0v4e4yy" path="res://Content/UI/Scripts/IsolationTheme.theme" id="2_ado3u"]
 [ext_resource type="Script" path="res://Content/UI/Scripts/GD_NavButton.gd" id="2_ogjko"]
 [ext_resource type="PackedScene" uid="uid://bypxny1o3ylmj" path="res://Content/Maps/L_MainMenu.tscn" id="3_gluyb"]
 [ext_resource type="Script" path="res://Content/UI/Scripts/GD_QuitButton.gd" id="4_wmdxq"]
@@ -55,12 +56,14 @@ alignment = 2
 
 [node name="Button" type="Button" parent="Camera3D/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_ado3u")
 text = "Restart"
 script = ExtResource("2_ogjko")
 NextScene = ExtResource("3_gluyb")
 
 [node name="Button2" type="Button" parent="Camera3D/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_ado3u")
 text = "Quit"
 script = ExtResource("4_wmdxq")
 
@@ -85,7 +88,7 @@ texture = ExtResource("2_3xxdw")
 
 [node name="Label" type="Label" parent="Camera3D/Control/PanelContainer/VBoxContainer"]
 layout_mode = 2
-text = "You Win!!! You Found a new Friend!! We Love you!!"
+text = "You Win!!! You Saved Starretri!! We Love you!!"
 horizontal_alignment = 1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

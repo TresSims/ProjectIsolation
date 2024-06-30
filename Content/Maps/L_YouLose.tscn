@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://22e3tboufmyc"]
+[gd_scene load_steps=10 format=3 uid="uid://drlxaqwi2rvm1"]
 
 [ext_resource type="Environment" uid="uid://cu3l378x4crcl" path="res://Content/Art/Environments/E_Space.tres" id="1_taw5c"]
+[ext_resource type="Theme" uid="uid://6xwjf0v4e4yy" path="res://Content/UI/Scripts/IsolationTheme.theme" id="2_chyia"]
 [ext_resource type="Script" path="res://Content/UI/Scripts/GD_NavButton.gd" id="2_p8xrj"]
 [ext_resource type="PackedScene" uid="uid://bypxny1o3ylmj" path="res://Content/Maps/L_MainMenu.tscn" id="3_wlr5o"]
 [ext_resource type="Script" path="res://Content/UI/Scripts/GD_QuitButton.gd" id="4_622pq"]
@@ -55,12 +56,14 @@ alignment = 2
 
 [node name="Button" type="Button" parent="Camera3D/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_chyia")
 text = "Restart"
 script = ExtResource("2_p8xrj")
 NextScene = ExtResource("3_wlr5o")
 
 [node name="Button2" type="Button" parent="Camera3D/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_chyia")
 text = "Quit"
 script = ExtResource("4_622pq")
 

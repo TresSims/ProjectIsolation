@@ -5,9 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://dbn8htlc45n7c" path="res://Content/Core/Characters/Starretri/B_AttackBox.tscn" id="3_jvy1y"]
 [ext_resource type="Texture2D" uid="uid://de7srteeif7no" path="res://Content/Art/PowerUps/AddOns/T_None.png" id="4_u27hj"]
 [ext_resource type="Texture2D" uid="uid://cnt7pyva75x7f" path="res://Content/Art/PowerUps/AddOns/T_Points.png" id="5_g24jl"]
-[ext_resource type="Texture2D" uid="uid://pkpdrhytr65q" path="res://Content/UI/Obj/HeartBroken.png" id="5_qoagc"]
-[ext_resource type="AudioStream" uid="uid://65sjgm6eei3r" path="res://Content/Art/Music/Isolation.wav" id="6_ejld6"]
-[ext_resource type="Texture2D" uid="uid://b63lbe2bx76dj" path="res://Content/UI/Obj/Heart.png" id="6_gtyxq"]
+[ext_resource type="Theme" uid="uid://6xwjf0v4e4yy" path="res://Content/UI/Scripts/IsolationTheme.theme" id="5_wwiro"]
+[ext_resource type="Texture2D" uid="uid://pkpdrhytr65q" path="res://Content/UI/Obj/HeartBroken.png" id="7_cjbc8"]
+[ext_resource type="Texture2D" uid="uid://b63lbe2bx76dj" path="res://Content/UI/Obj/Heart.png" id="8_nxjy5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tgekv"]
 radius = 0.569079
@@ -52,11 +52,13 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 541.0
 offset_bottom = 38.0
+theme = ExtResource("5_wwiro")
 
 [node name="MarginContainer" type="MarginContainer" parent="Control"]
 layout_mode = 0
 offset_right = 502.0
 offset_bottom = 40.0
+theme = ExtResource("5_wwiro")
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
@@ -64,21 +66,23 @@ theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
 layout_mode = 2
+theme = ExtResource("5_wwiro")
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
+theme = ExtResource("5_wwiro")
 text = "HP: "
 
 [node name="HPBar" type="TextureProgressBar" parent="Control/MarginContainer/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
 size_flags_horizontal = 3
 max_value = 3.0
-value = 3.0
-texture_under = ExtResource("5_qoagc")
-texture_progress = ExtResource("6_gtyxq")
+value = 1.0
+texture_under = ExtResource("7_cjbc8")
+texture_progress = ExtResource("8_nxjy5")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -127,7 +131,6 @@ layout_mode = 2
 text = "Item:??? Cooldown: ???"
 
 [node name="StallDialogue" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 12
 anchor_top = 1.0
@@ -136,6 +139,7 @@ anchor_bottom = 1.0
 offset_top = -195.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("5_wwiro")
 
 [node name="MarginContainer" type="MarginContainer" parent="StallDialogue"]
 layout_mode = 1
@@ -197,6 +201,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Points/MarginContainer"]
 layout_mode = 2
+theme = ExtResource("5_wwiro")
 theme_override_constants/separation = 5
 
 [node name="TextureRect" type="TextureRect" parent="Points/MarginContainer/HBoxContainer"]
@@ -212,12 +217,5 @@ text = "0
 [node name="Label" type="Label" parent="Points/MarginContainer/HBoxContainer"]
 layout_mode = 2
 text = "Points"
-
-[node name="AudioListener3D" type="AudioListener3D" parent="."]
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_ejld6")
-volume_db = -25.0
-autoplay = true
 
 [connection signal="timeout" from="WorkTimer" to="." method="end_working"]
